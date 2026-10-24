@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luznex & Dewutts - Connected Brands</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --luznex-primary: #4f46e5;
+            --luznex-secondary: #6366f1;
+            --dewutts-primary: #f59e0b;
+            --dewutts-secondary: #fbbf24;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            transition: background-color 0.5s ease;
+        }
+        
+        .brand-container {
+            display: flex;
+            width: 200%;
+            transition: transform 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        
+        .brand-section {
+            width: 50%;
+            padding: 0 5%;
+        }
+        
+        .active-brand {
+            transform: translateX(0);
+        }
+        
+        .dewutts-active {
+            transform: translateX(-50%);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: currentColor;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gallery-item {
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+        
+        .testimonial-card {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        
+        .testimonial-card.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background-color: #4f46e5;
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        
+        .dark-mode {
+            background-color: #1a1a1a;
+            color: #f3f4f6;
+        }
+        
+        .dark-mode .bg-white {
+            background-color: #2d2d2d !important;
+            color: #f3f4f6 !important;
+        }
+        
+        .dark-mode .text-gray-700 {
+            color: #d1d5db !important;
+        }
+        
+        .dark-mode .text-gray-800 {
+            color: #e5e7eb !important;
+        }
+        
+        .dark-mode .bg-gray-100 {
+            background-color: #333333 !important;
+        }
+        
+        .dark-mode .border-gray-200 {
+            border-color: #444444 !important;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="fixed w-full bg-white shadow-sm z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Luznex Logo -->
+                <div class="flex items-center cursor-pointer brand-switch" data-brand="luznex">
+                    <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center mr-3">
+                        <i class="fas fa-lightbulb text-indigo-600 text-xl"></i>
+                    </div>
+                    <span class="text-xl font-bold text-indigo-600">Luznex</span>
+                </div>
+                
+                <!-- Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Home</a>
+                    <a href="#services" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Services</a>
+                    <a href="#projects" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Projects</a>
+                    <a href="#testimonials" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Testimonials</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Contact Us</a>
+                </nav>
+                
+                <!-- Dewutts Logo -->
+                <div class="flex items-center cursor-pointer brand-switch" data-brand="dewutts">
+                    <div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center mr-3">
+                        <i class="fas fa-paint-roller text-amber-500 text-xl"></i>
+                    </div>
+                    <span class="text-xl font-bold text-amber-500">Dewutts</span>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <div class="container mx-auto px-6 py-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="#" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Home</a>
+                    <a href="#services" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Services</a>
+                    <a href="#projects" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Projects</a>
+                    <a href="#testimonials" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Testimonials</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dark Mode Toggle -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <label class="toggle-switch">
+            <input type="checkbox" id="dark-mode-toggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+
+    <!-- Main Content -->
+    <main class="pt-24">
+        <div class="brand-container active-brand">
+            <!-- Luznex Section -->
+            <section class="brand-section" id="luznex">
+                <!-- Hero Section -->
+                <section class="py-20">
+                    <div class="container mx-auto px-6">
+                        <div class="flex flex-col md:flex-row items-center">
+                            <div class="md:w-1/2 mb-10 md:mb-0">
+                                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Smart Living <span class="text-indigo-600">Simplified</span></h1>
+                                <p class="text-xl text-gray-600 mb-8">Transform your home or business with our cutting-edge automation solutions that blend technology with comfort.</p>
+                                <div class="flex space-x-4">
+                                    <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition duration-300">Get a Free Consultation</button>
+                                    <button class="border border-indigo-600 text-indigo-600 hover:bg-indigo-50 px-6 py-3 rounded-lg font-medium transition duration-300">View Projects</button>
+                                </div>
+                            </div>
+                            <div class="md:w-1/2">
+                                <img src="https://images.unsplash.com/photo-1558002038-1055907df827?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Smart Home Automation" class="rounded-xl shadow-xl">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- About Section -->
+                <section class="py-20 bg-indigo-50">
+                    <div class="container mx-auto px-6">
+                        <div class="text-center mb-16">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-4">About Luznex</h2>
+                            <div class="w-20 h-1 bg-indigo-600 mx-auto"></div>
+                        </div>
+                        <div class="flex flex-col md:flex-row items-center">
+                            <div class="md:w-1/2 mb-10 md:mb-0">
+                                <img src="https://images.unsplash.com/photo-1560520031-3a4dc4e9de0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="About Luznex" class="rounded-xl shadow-lg">
+                            </div>
+                            <div class="md:w-1/2 md:pl-12">
+                                <h3 class="text-2xl font-semibold text-gray-800 mb-6">Innovating Spaces with Intelligent Technology</h3>
+                                <p class="text-gray-600 mb-6">Founded in 2015, Luznex has been at the forefront of home and business automation, delivering seamless integration of technology into everyday living and working environments.</p>
+                                <p class="text-gray-600 mb-6">Our team of certified professionals combines technical expertise with creative problem-solving to design systems that are intuitive, reliable, and future-proof.</p>
+                                <div class="flex items-center">
+                                    <div class="flex -space-x-2">
+                                        <img class="w-10 h-10 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/women/12.jpg" alt="Team member">
+                                        <img class="w-10 h-10 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Team member">
+                                        <img class="w-10 h-10 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/women/45.jpg" alt="Team member">
+                                    </div>
+                                    <span class="ml-4 text-gray-600">20+ Certified Professionals</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Services Section -->
+                <section class="py-20" id="services">
+                    <div class="container mx-auto px-6">
+                        <div class="text-center mb-16">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-4">Our Services</h2>
+                            <div class="w-20 h-1 bg-indigo-600 mx-auto"></div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <div class="service-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
+                                <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center mb-6">
+                                    <i class="fas fa-home text-indigo-600 text-2xl"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-3">Smart Home Automation</h3>
+                                <p class="text-gray-600 mb-4">Complete control of lighting, climate, security, and entertainment systems through intuitive interfaces.</p>
+                                <a href="#" class="text-indigo-600 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
+                            </div>
+                            <div class="service-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
+                                <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center mb-6">
+                                    <i class="fas fa-building text-indigo-600 text-2xl"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-3">Commercial Automation</h3>
+                                <p class="text-gray-600 mb-4">Energy-efficient solutions for offices, retail spaces, and hospitality venues that enhance operations.</p>
+                                <a href="#" class="text-indigo-600 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
+                            </div>
+                            <div class="service-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
+                                <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center mb-6">
+                                    <i class="fas fa-shield-alt text-indigo-600 text-2xl"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-3">Security Systems</h3>
+                                <p class="text-gray-600 mb-4">Comprehensive surveillance, access control, and alarm systems integrated with smart notifications.</p>
+                                <a href="#" class="text-indigo-600 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
+                            </div>
+                            <div class="service-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
+                                <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center mb-6">
+                                    <i class="fas fa-network-wired text-indigo-600 text-2xl"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-3">Network Infrastructure</h3>
+                                <p class="text-gray-600 mb-4">High-performance wired and wireless networks designed for smart home and business needs.</p>
+                                <a href="#" class="text-indigo-600 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
+                            </div>
+                            <div class="service-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
+                                <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center mb-6">
+                                    <i class="fas fa-lightbulb text-indigo-600 text-2xl"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-3">Lighting Design</h3>
+                                <p class="text-gray-600 mb-4">Custom lighting solutions that create ambiance while optimizing energy efficiency.</p>
+                                <a href="#" class="text-indigo-600 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
+                            </div>
+                            <div class="service-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
+                                <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center mb-6">
+                                    <i class="fas fa-headset text-indigo-600 text-2xl"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-3">24/7 Support</h3>
+                                <p class="text-gray-600 mb-4">Dedicated technical support and maintenance services to ensure your systems run smoothly.</p>
+                                <a href="#" class="text-indigo-600 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Projects Gallery -->
+                <section class="py-20 bg-indigo-50" id="projects">
+                    <div class="container mx-auto px-6">
+                        <div class="text-center mb-16">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-4">Our Projects</h2>
+                            <div class="w-20 h-1 bg-indigo-600 mx-auto"></div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="gallery-item overflow-hidden rounded-xl shadow-lg bg-white">
+                                <img src="https://images.unsplash.com/photo-1558002038-1055907df827?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Project 1" class="w-full h-64 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Modern Smart Home</h3>
+                                    <p class="text-gray-600 mb-4">Complete home automation system with voice control and energy monitoring.</p>
+                                    <a href="#" class="text-indigo-600 font-medium">View Details</a>
+                                </div>
+                            </div>
+                            <div class="gallery-item overflow-hidden rounded-xl shadow-lg bg-white">
+                                <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Project 2" class="w-full h-64 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Luxury Hotel Automation</h3>
+                                    <p class="text-gray-600 mb-4">Integrated room control system for a 5-star hotel with 200+ rooms.</p>
+                                    <a href="#" class="text-indigo-600 font-medium">View Details</a>
+                                </div>
+                            </div>
+                            <div class="gallery-item overflow-hidden rounded-xl shadow-lg bg-white">
+                                <img src="https://images.unsplash.com/photo-1517502884422-41eaead166d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Project 3" class="w-full h-64 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Office Building Retrofit</h3>
+                                    <p class="text-gray-600 mb-4">Energy-saving automation system for a 50,000 sq ft commercial space.</p>
+                                    <a href="#" class="text-indigo-600 font-medium">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-12">
+                            <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-lg font-medium transition duration-300">View All Projects</button>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Testimonials -->
+                <section class="py-20" id="testimonials">
+                    <div class="container mx-auto px-6">
+                        <div class="text-center mb-16">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-4">Client Testimonials</h2>
+                            <div class="w-20 h-1 bg-indigo-600 mx-auto"></div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <div class="testimonial-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Client" class="w-full h-full object-cover">
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-800">Sarah Johnson</h4>
+                                        <p class="text-gray-600 text-sm">Homeowner</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 mb-4">"Luznex transformed our home into a smart, efficient space that's both beautiful and functional. Their attention to detail and customer service is exceptional."</p>
+                                <div class="flex text-amber-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="testimonial-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                                        <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="Client" class="w-full h-full object-cover">
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-800">Michael Chen</h4>
+                                        <p class="text-gray-600 text-sm">Business Owner</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 mb-4">"The automation system Luznex installed in our office has significantly improved our energy efficiency and employee comfort. Their team was professional and knowledgeable."</p>
+                                <div class="flex text-amber-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="testimonial-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Client" class="w-full h-full object-cover">
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-800">Emily Rodriguez</h4>
+                                        <p class="text-gray-600 text-sm">Hotel Manager</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 mb-4">"Working with Luznex on our hotel automation project was a game-changer. Their solutions have enhanced our guest experience while reducing operational costs."</p>
+                                <div class="flex text-amber-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Contact Section -->
+                <section class="py-20 bg-indigo-50" id="contact">
+                    <div class="container mx-auto px-6">
+                        <div class="text-center mb-16">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-4">Get In Touch</h2>
+                            <div class="w-20 h-1 bg-indigo-600 mx-auto"></div>
+                        </div>
+                        <div class="flex flex-col md:flex-row">
+                            <div class="md:w-1/2 mb-10 md:mb-0">
+                                <h3 class="text-2xl font-semibold text-gray-800 mb-6">Contact Information</h3>
+                                <div class="space-y-6">
+                                    <div class="flex items-start">
+                                        <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+                                            <i class="fas fa-map-marker-alt text-indigo-600"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-gray-800">Address</h4>
+                                            <p class="text-gray-600">123 Automation Way, Tech City, TC 12345</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+                                            <i class="fas fa-phone-alt text-indigo-600"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-gray-800">Phone</h4>
+                                            <p class="text-gray-600">(555) 123-4567</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+                                            <i class="fas fa-envelope text-indigo-600"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-gray-800">Email</h4>
+                                            <p class="text-gray-600">info@luznex.com</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-10">
+                                    <h4 class="font-medium text-gray-800 mb-4">Follow Us</h4>
+                                    <div class="flex space-x-4">
+                                        <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-indigo-100 transition duration-300">
+                                            <i class="fab fa-facebook-f text-indigo-600"></i>
+                                        </a>
+                                        <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-indigo-100 transition duration-300">
+                                            <i class="fab fa-twitter text-indigo-600"></i>
+                                        </a>
+                                        <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-indigo-100 transition duration-300">
+                                            <i class="fab fa-instagram text-indigo-600"></i>
+                                        </a>
+                                        <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-indigo-100 transition duration-300">
+                                            <i class="fab fa-linkedin-in text-indigo-600"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="md:w-1/2 md:pl-12">
+                                <form class="bg-white p-8 rounded-xl shadow-md">
+                                    <h3 class="text-2xl font-semibold text-gray-800 mb-6">Request a Quote</h3>
+                                    <div class="mb-6">
+                                        <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
+                                        <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                                    </div>
+                                    <div class="mb-6">
+                                        <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                                        <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                                    </div>
+                                    <div class="mb-6">
+                                        <label for="phone" class="block text-gray-700 font-medium mb-2">Phone</label>
+                                        <input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                                    </div>
+                                    <div class="mb-6">
+                                        <label for="service" class="block text-gray-700 font-medium mb-2">Service Interested In</label>
+                                        <select id="service" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                                            <option value="">Select a service</option>
+                                            <option value="home-automation">Home Automation</option>
+                                            <option value="commercial-automation">Commercial Automation</option>
+                                            <option value="security-systems">Security Systems</option>
+                                            <option value="network-infrastructure">Network Infrastructure</option>
+                                            <option value="lighting-design">Lighting Design</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-6">
+                                        <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+                                        <textarea id="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"></textarea>
+                                    </div>
+                                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition duration-300">Submit Request</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+            
+            <!-- Dewutts Section -->
+            <section class="brand-section" id="dewutts">
+                <!-- Hero Section -->
+                <section class="py-20">
+                    <div class="container mx-auto px-6">
+                        <div class="flex flex-col md:flex-row items-center">
+                            <div class="md:w-1/2 mb-10 md:mb-0">
+                                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Surface <span class="text-amber-500">Transformation</span></h1>
+                                <p class="text-xl text-gray-600 mb-8">Elevate your spaces with our expert painting and surface design services that combine artistry with precision craftsmanship.</p>
+                                <div class="flex space-x-4">
+                                    <button class="bg-amber-500 hover:bg-amber-600 text-white px-6 py-3 rounded-lg font-medium transition duration-300">Get a Free Estimate</button>
+                                    <button class="border border-amber-500 text-amber-500 hover:bg-amber-50 px-6 py-3 rounded-lg font-medium transition duration-300">View Portfolio</button>
+                                </div>
+                            </div>
+                            <div class="md:w-1/2">
+                                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Interior Painting" class="rounded-xl shadow-xl">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- About Section -->
+                <section class="py-20 bg-amber-50">
+                    <div class="container mx-auto px-6">
+                        <div class="text-center mb-16">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-4">About Dewutts</h2>
+                            <div class="w-20 h-1 bg-amber-500 mx-auto"></div>
+                        </div>
+                        <div class="flex flex-col md:flex-row items-center">
+                            <div class="md:w-1/2 mb-10 md:mb-0">
+                                <img src="https://images.unsplash.com/photo-1600121848594-d8644e57abab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="About Dewutts" class="rounded-xl shadow-lg">
+                            </div>
+                            <div class="md:w-1/2 md:pl-12">
+                                <h3 class="text-2xl font-semibold text-gray-800 mb-6">Transforming Spaces with Color & Texture</h3>
+                                <p class="text-gray-600 mb-6">Established in 2012, Dewutts has built a reputation for excellence in painting and surface design, serving both residential and commercial clients with creative solutions.</p>
+                                <p class="text-gray-600 mb-6">Our team of skilled artisans combines technical expertise with artistic vision to deliver finishes that exceed expectations and stand the test of time.</p>
+                                <div class="flex items-center">
+                                    <div class="flex -space-x-2">
+                                        <img class="w-10 h-10 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/men/22.jpg" alt="Team member">
+                                        <img class="w-10 h-10 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/women/33.jpg" alt="Team member">
+                                        <img class="w-10 h-10 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/men/44.jpg" alt="Team member">
+                                    </div>
+                                    <span class="ml-4 text-gray-600">15+ Master Craftsmen</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Services Section -->
+                <section class="py-20" id="services">
+                    <div class="container mx-auto px-6">
+                        <div class="text-center mb-16">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-4">Our Services</h2>
+                            <div class="w-20 h-1 bg-amber-500 mx-auto"></div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <div class="service-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
+                                <div class="w-14 h-14 bg-amber-100 rounded-full flex items-center justify-center mb-6">
+                                    <i class="fas fa-paint-roller text-amber-500 text-2xl"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-3">Interior Painting</h3>
+                                <p class="text-gray-600 mb-4">Professional interior painting services using premium quality paints and precise application techniques.</p>
+                                <a href="#" class="text-amber-500 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
+                            </div>
+                            <div class="service-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
+                                <div class="w-14 h-14 bg-amber-100 rounded-full flex items-center justify-center mb-6">
+                                    <i class="fas fa-home text-amber-500 text-2xl"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-3">Exterior Painting</h3>
+                                <p class="text-gray-600 mb-4">Durable exterior finishes that protect and enhance your property's curb appeal in all weather conditions.</p>
+                                <a href="#" class="text-amber-500 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
+                            </div>
+                            <div class="service-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
+                                <div class="w-14 h-14 bg-amber-100 rounded-full flex items-center justify-center mb-6">
+                                    <i class="fas fa-spray-can text-amber-500 text-2xl"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-3">Decorative Finishes</h3>
+                                <p class="text-gray-600 mb-4">Custom decorative techniques including faux finishes, Venetian plaster, and textured wall treatments.</p>
+                                <a href="#" class="text-amber-500 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
+                            </div>
+                            <div class="service-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
+                                <div class="w-14 h-14 bg-amber-100 rounded-full flex items-center justify-center mb-6">
+                                    <i class="fas fa-building text-amber-500 text-2xl"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-3">Commercial Painting</h3>
+                                <p class="text-gray-600 mb-4">Efficient painting solutions for businesses, offices, and retail spaces with minimal disruption.</p>
+                                <a href="#" class="text-amber-500 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
+                            </div>
+                            <div class="service-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
+                                <div class="w-14 h-14 bg-amber-100 rounded-full flex items-center justify-center mb-6">
+                                    <i class="fas fa-brush text-amber-500 text-2xl"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-3">Cabinet Refinishing</h3>
+                                <p class="text-gray-600 mb-4">Transform your kitchen or bathroom with our professional cabinet painting and refinishing services.</p>
+                                <a href="#" class="text-amber-500 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
+                            </div>
+                            <div class="service-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
+                                <div class="w-14 h-14 bg-amber-100 rounded-full flex items-center justify-center mb-6">
+                                    <i class="fas fa-palette text-amber-500 text-2xl"></i>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-3">Color Consultation</h3>
+                                <p class="text-gray-600 mb-4">Expert guidance in selecting the perfect color schemes for your home or business spaces.</p>
+                                <a href="#" class="text-amber-500 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Projects Gallery -->
+                <section class="py-20 bg-amber-50" id="projects">
+                    <div class="container mx-auto px-6">
+                        <div class="text-center mb-16">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-4">Our Portfolio</h2>
+                            <div class="w-20 h-1 bg-amber-500 mx-auto"></div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="gallery-item overflow-hidden rounded-xl shadow-lg bg-white">
+                                <img src="https://images.unsplash.com/photo-1600121848594-d8644e57abab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Project 1" class="w-full h-64 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Modern Living Room</h3>
+                                    <p class="text-gray-600 mb-4">Custom color scheme with decorative wall finishes.</p>
+                                    <a href="#" class="text-amber-500 font-medium">View Details</a>
+                                </div>
+                            </div>
+                            <div class="gallery-item overflow-hidden rounded-xl shadow-lg bg-white">
+                                <img src="https://images.unsplash.com/photo-1600566752227-17c8c0c69d22?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Project 2" class="w-full h-64 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Historic Home Exterior</h3>
+                                    <p class="text-gray-600 mb-4">Period-accurate color restoration with premium paints.</p>
+                                    <a href="#" class="text-amber-500 font-medium">View Details</a>
+                                </div>
+                            </div>
+                            <div class="gallery-item overflow-hidden rounded-xl shadow-lg bg-white">
+                                <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Project 3" class="w-full h-64 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Office Space Makeover</h3>
+                                    <p class="text-gray-600 mb-4">Complete commercial repaint with minimal downtime.</p>
+                                    <a href="#" class="text-amber-500 font-medium">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-12">
+                            <button class="bg-amber-500 hover:bg-amber-600 text-white px-8 py-3 rounded-lg font-medium transition duration-300">View Full Portfolio</button>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Testimonials -->
+                <section class="py-20" id="testimonials">
+                    <div class="container mx-auto px-6">
+                        <div class="text-center mb-16">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-4">Client Testimonials</h2>
+                            <div class="w-20 h-1 bg-amber-500 mx-auto"></div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <div class="testimonial-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                                        <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Client" class="w-full h-full object-cover">
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-800">Jennifer Martinez</h4>
+                                        <p class="text-gray-600 text-sm">Homeowner</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 mb-4">"Dewutts transformed our dated living room into a modern masterpiece. Their attention to detail and color expertise was beyond our expectations."</p>
+                                <div class="flex text-amber-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="testimonial-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                                        <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Client" class="w-full h-full object-cover">
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-800">Robert Williams</h4>
+                                        <p class="text-gray-600 text-sm">Business Owner</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 mb-4">"The commercial painting job Dewutts did for our office was completed on time and with minimal disruption. The quality of work was exceptional."</p>
+                                <div class="flex text-amber-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="testimonial-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
+                                <div class="flex items-center mb-6">
+                                    <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                                        <img src="https://randomuser.me/api/portraits/women/78.jpg" alt="Client" class="w-full h-full object-cover">
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-800">Amanda Thompson</h4>
+                                        <p class="text-gray-600 text-sm">Interior Designer</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 mb-4">"I regularly collaborate with Dewutts on projects because their craftsmanship is unparalleled. Their decorative finishes add incredible value to my designs."</p>
+                                <div class="flex text-amber-400">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Contact Section -->
+                <section class="py-20 bg-amber-50" id="contact">
+                    <div class="container mx-auto px-6">
+                        <div class="text-center mb-16">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-4">Get In Touch</h2>
+                            <div class="w-20 h-1 bg-amber-500 mx-auto"></div>
+                        </div>
+                        <div class="flex flex-col md:flex-row">
+                            <div class="md:w-1/2 mb-10 md:mb-0">
+                                <h3 class="text-2xl font-semibold text-gray-800 mb-6">Contact Information</h3>
+                                <div class="space-y-6">
+                                    <div class="flex items-start">
+                                        <div class="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center mr-4">
+                                            <i class="fas fa-map-marker-alt text-amber-500"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-gray-800">Address</h4>
+                                            <p class="text-gray-600">456 Design Avenue, Art District, AD 67890</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <div class="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center mr-4">
+                                            <i class="fas fa-phone-alt text-amber-500"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-gray-800">Phone</h4>
+                                            <p class="text-gray-600">(555) 987-6543</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <div class="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center mr-4">
+                                            <i class="fas fa-envelope text-amber-500"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-gray-800">Email</h4>
+                                            <p class="text-gray-600">info@dewutts.com</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-10">
+                                    <h4 class="font-medium text-gray-800 mb-4">Follow Us</h4>
+                                    <div class="flex space-x-4">
+                                        <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-amber-100 transition duration-300">
+                                            <i class="fab fa-facebook-f text-amber-500"></i>
+                                        </a>
+                                        <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-amber-100 transition duration-300">
+                                            <i class="fab fa-twitter text-amber-500"></i>
+                                        </a>
+                                        <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-amber-100 transition duration-300">
+                                            <i class="fab fa-instagram text-amber-500"></i>
+                                        </a>
+                                        <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-amber-100 transition duration-300">
+                                            <i class="fab fa-pinterest-p text-amber-500"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="md:w-1/2 md:pl-12">
+                                <form class="bg-white p-8 rounded-xl shadow-md">
+                                    <h3 class="text-2xl font-semibold text-gray-800 mb-6">Request an Estimate</h3>
+                                    <div class="mb-6">
+                                        <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
+                                        <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent">
+                                    </div>
+                                    <div class="mb-6">
+                                        <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                                        <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent">
+                                    </div>
+                                    <div class="mb-6">
+                                        <label for="phone" class="block text-gray-700 font-medium mb-2">Phone</label>
+                                        <input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent">
+                                    </div>
+                                    <div class="mb-6">
+                                        <label for="service" class="block text-gray-700 font-medium mb-2">Service Interested In</label>
+                                        <select id="service" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent">
+                                            <option value="">Select a service</option>
+                                            <option value="interior-painting">Interior Painting</option>
+                                            <option value="exterior-painting">Exterior Painting</option>
+                                            <option value="decorative-finishes">Decorative Finishes</option>
+                                            <option value="commercial-painting">Commercial Painting</option>
+                                            <option value="cabinet-refinishing">Cabinet Refinishing</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-6">
+                                        <label for="message" class="block text-gray-700 font-medium mb-2">Project Details</label>
+                                        <textarea id="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"></textarea>
+                                    </div>
+                                    <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-white px-6 py-3 rounded-lg font-medium transition duration-300">Request Estimate</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-8 md:mb-0">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center mr-3">
+                            <i class="fas fa-lightbulb text-indigo-600 text-xl"></i>
+                        </div>
+                        <span class="text-xl font-bold text-white">Luznex</span>
+                    </div>
+                    <p class="text-gray-400 max-w-xs">Innovative automation solutions for homes and businesses.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300">Services</a></li>
+                        <li><a href="#projects" class="text-gray-400 hover:text-white transition duration-300">Projects</a></li>
+                        <li><a href="#testimonials" class="text-gray-400 hover:text-white transition duration-300">Testimonials</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition duration-300">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="mb-8 md:mb-0">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center mr-3">
+                            <i class="fas fa-paint-roller text-amber-500 text-xl"></i>
+                        </div>
+                        <span class="text-xl font-bold text-white">Dewutts</span>
+                    </div>
+                    <p class="text-gray-400 max-w-xs">Transforming spaces with color and creative surface design.</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2025 Luznex All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Brand switching functionality
+        document.querySelectorAll('.brand-switch').forEach(button => {
+            button.addEventListener('click', function() {
+                const brand = this.getAttribute('data-brand');
+                const container = document.querySelector('.brand-container');
+                
+                if (brand === 'luznex') {
+                    container.classList.remove('dewutts-active');
+                    container.classList.add('active-brand');
+                } else {
+                    container.classList.remove('active-brand');
+                    container.classList.add('dewutts-active');
+                }
+                
+                // Update active brand indicator in header
+                document.querySelectorAll('.brand-switch').forEach(btn => {
+                    if (btn.getAttribute('data-brand') === brand) {
+                        btn.querySelector('span').classList.add('font-bold');
+                    } else {
+                        btn.querySelector('span').classList.remove('font-bold');
+                    }
+                });
+            });
+        });
+        
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+        
+        // Dark mode toggle
+        document.getElementById('dark-mode-toggle').addEventListener('change', function() {
+            document.body.classList.toggle('dark-mode');
+        });
+        
+        // Animate testimonial cards when they come into view
+        const testimonialCards = document.querySelectorAll('.testimonial-card');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        testimonialCards.forEach(card => {
+            observer.observe(card);
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
