@@ -4,23 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Luznex smart automation and Dewutts painting and design services.">
-    <meta name="theme-color" content="#4f46e5">
+    <meta name="theme-color" content="#111827">
     <title>Luznex & Dewutts - Connected Brands</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --luznex-primary: #4f46e5;
-            --luznex-secondary: #6366f1;
-            --dewutts-primary: #f59e0b;
-            --dewutts-secondary: #fbbf24;
+            --luznex-primary: #d6b27a;
+            --luznex-secondary: #6f583a;
+            --dewutts-primary: #8a5a25;
+            --dewutts-secondary: #d5b47f;
+            --ink: #f5f3ef;
+            --surface: #111827;
+            --line: #2d3547;
         }
         
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: Georgia, 'Times New Roman', serif;
+            background: var(--surface);
+            color: var(--ink);
             overflow-x: hidden;
             transition: background-color 0.5s ease;
         }
+
+        h1, h2, h3 { font-family: 'Cormorant Garamond', serif; letter-spacing: -.045em; }
+        .luxury-nav { background: rgba(17,24,39,.78); backdrop-filter: blur(18px); border: 1px solid var(--line); border-radius: 999px; }
+        .luxury-hero { min-height: 88vh; background: radial-gradient(circle at 72% 25%, rgba(111,88,58,.26), transparent 28%), radial-gradient(circle at 12% 70%, rgba(214,178,122,.08), transparent 30%); }
+        .luxury-hero h1 { font-size: clamp(5rem, 12vw, 10rem); line-height: .78; }
+        .luxury-kicker { color: var(--luznex-primary); letter-spacing: .2em; text-transform: uppercase; font-size: .68rem; font-weight: 700; }
+        .luxury-panel { background: rgba(17,24,39,.74); border: 1px solid var(--line); backdrop-filter: blur(14px); }
+        .luxury-rule { border-color: var(--line) !important; }
+        .luxury-link { color: var(--ink) !important; }
+        .luxury-link:hover { color: var(--luznex-primary) !important; }
+        .luxury-image { filter: saturate(.78) contrast(1.04); transition: transform .6s ease, filter .6s ease; }
+        .luxury-image:hover { transform: scale(1.025); filter: saturate(1) contrast(1.04); }
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
         
         .brand-container {
             display: flex;
@@ -183,35 +203,35 @@
         #production-demo a { transition: transform .2s ease, background-color .2s ease; }
         #production-demo a:hover { transform: translateY(-2px); }
         @media (prefers-reduced-motion: reduce) { #production-demo article, #production-demo a { transition: none; } }</style>
-</head>
+<style id="impeccable-fixes">body{letter-spacing:.005em}h1,h2,h3{font-family:Georgia,"Times New Roman",serif}p,.text-sm,.text-xs{color:var(--muted)}.bg-white{background:#171c27!important}.text-stone-700{color:#d6b27a!important}.text-amber-800{color:#b47a35!important}.container{padding-left:2rem;padding-right:2rem}.nav-link{letter-spacing:.03em}.service-card{border:1px solid var(--line);padding:1.5rem;background:rgba(255,255,255,.025)}@media(max-width:640px){.container{padding-left:1.25rem;padding-right:1.25rem}}</style></head>
 <body class="bg-gray-50">
     <!-- Header -->
-    <header class="fixed w-full bg-white shadow-sm z-50">
-        <div class="container mx-auto px-6 py-4">
+    <header class="fixed w-full bg-transparent shadow-none z-50 px-4 pt-4">
+        <div class="container mx-auto px-6 py-3 luxury-nav">
             <div class="flex items-center justify-between">
                 <!-- Luznex Logo -->
                 <div class="flex items-center cursor-pointer brand-switch" data-brand="luznex">
                     <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center mr-3">
-                        <i class="fas fa-lightbulb text-indigo-600 text-xl"></i>
+                        <i class="fas fa-lightbulb text-stone-700 text-xl"></i>
                     </div>
-                    <span class="text-xl font-bold text-indigo-600">Luznex</span>
+                    <span class="text-xl font-bold text-stone-700">Luznex</span>
                 </div>
                 
                 <!-- Navigation -->
                 <nav class="hidden md:flex space-x-8">
-                    <a href="#contact" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Home</a>
-                    <a href="#services" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Services</a>
-                    <a href="#projects" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Projects</a>
-                    <a href="#testimonials" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Testimonials</a>
-                    <a href="#contact" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Contact Us</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-stone-700 font-medium">Home</a>
+                    <a href="#services" class="nav-link text-gray-700 hover:text-stone-700 font-medium">Services</a>
+                    <a href="#projects" class="nav-link text-gray-700 hover:text-stone-700 font-medium">Projects</a>
+                    <a href="#testimonials" class="nav-link text-gray-700 hover:text-stone-700 font-medium">Testimonials</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-stone-700 font-medium">Contact Us</a>
                 </nav>
                 
                 <!-- Dewutts Logo -->
                 <div class="flex items-center cursor-pointer brand-switch" data-brand="dewutts">
                     <div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center mr-3">
-                        <i class="fas fa-paint-roller text-amber-500 text-xl"></i>
+                        <i class="fas fa-paint-roller text-amber-800 text-xl"></i>
                     </div>
-                    <span class="text-xl font-bold text-amber-500">Dewutts</span>
+                    <span class="text-xl font-bold text-amber-800">Dewutts</span>
                 </div>
                 
                 <!-- Mobile Menu Button -->
@@ -227,11 +247,11 @@
         <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
             <div class="container mx-auto px-6 py-4">
                 <div class="flex flex-col space-y-4">
-                    <a href="#contact" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Home</a>
-                    <a href="#services" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Services</a>
-                    <a href="#projects" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Projects</a>
-                    <a href="#testimonials" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Testimonials</a>
-                    <a href="#contact" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Contact Us</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-stone-700 font-medium">Home</a>
+                    <a href="#services" class="nav-link text-gray-700 hover:text-stone-700 font-medium">Services</a>
+                    <a href="#projects" class="nav-link text-gray-700 hover:text-stone-700 font-medium">Projects</a>
+                    <a href="#testimonials" class="nav-link text-gray-700 hover:text-stone-700 font-medium">Testimonials</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-stone-700 font-medium">Contact Us</a>
                 </div>
             </div>
         </div>
@@ -246,7 +266,7 @@
     </div>
 
     <!-- Main Content -->
-    <main class="pt-24">
+    <main class="pt-24 luxury-hero">
         <div class="brand-container active-brand">
             <!-- Luznex Section -->
             <section class="brand-section" id="luznex">
@@ -255,11 +275,11 @@
                     <div class="container mx-auto px-6">
                         <div class="flex flex-col md:flex-row items-center">
                             <div class="md:w-1/2 mb-10 md:mb-0">
-                                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Smart Living <span class="text-indigo-600">Simplified</span></h1>
+                                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Smart Living <span class="text-stone-700">Simplified</span></h1>
                                 <p class="text-xl text-gray-600 mb-8">Transform your home or business with our cutting-edge automation solutions that blend technology with comfort.</p>
                                 <div class="flex space-x-4">
                                     <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition duration-300">Get a Free Consultation</button>
-                                    <button class="border border-indigo-600 text-indigo-600 hover:bg-indigo-50 px-6 py-3 rounded-lg font-medium transition duration-300">View Projects</button>
+                                    <button class="border border-indigo-600 text-stone-700 hover:bg-indigo-50 px-6 py-3 rounded-lg font-medium transition duration-300">View Projects</button>
                                 </div>
                             </div>
                             <div class="md:w-1/2">
@@ -307,51 +327,51 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             <div class="service-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
                                 <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center mb-6">
-                                    <i class="fas fa-home text-indigo-600 text-2xl"></i>
+                                    <i class="fas fa-home text-stone-700 text-2xl"></i>
                                 </div>
                                 <h3 class="text-xl font-semibold text-gray-800 mb-3">Smart Home Automation</h3>
                                 <p class="text-gray-600 mb-4">Complete control of lighting, climate, security, and entertainment systems through intuitive interfaces.</p>
-                                <a href="#contact" class="text-indigo-600 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
+                                <a href="#contact" class="text-stone-700 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
                             </div>
                             <div class="service-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
                                 <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center mb-6">
-                                    <i class="fas fa-building text-indigo-600 text-2xl"></i>
+                                    <i class="fas fa-building text-stone-700 text-2xl"></i>
                                 </div>
                                 <h3 class="text-xl font-semibold text-gray-800 mb-3">Commercial Automation</h3>
                                 <p class="text-gray-600 mb-4">Energy-efficient solutions for offices, retail spaces, and hospitality venues that enhance operations.</p>
-                                <a href="#contact" class="text-indigo-600 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
+                                <a href="#contact" class="text-stone-700 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
                             </div>
                             <div class="service-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
                                 <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center mb-6">
-                                    <i class="fas fa-shield-alt text-indigo-600 text-2xl"></i>
+                                    <i class="fas fa-shield-alt text-stone-700 text-2xl"></i>
                                 </div>
                                 <h3 class="text-xl font-semibold text-gray-800 mb-3">Security Systems</h3>
                                 <p class="text-gray-600 mb-4">Comprehensive surveillance, access control, and alarm systems integrated with smart notifications.</p>
-                                <a href="#contact" class="text-indigo-600 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
+                                <a href="#contact" class="text-stone-700 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
                             </div>
                             <div class="service-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
                                 <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center mb-6">
-                                    <i class="fas fa-network-wired text-indigo-600 text-2xl"></i>
+                                    <i class="fas fa-network-wired text-stone-700 text-2xl"></i>
                                 </div>
                                 <h3 class="text-xl font-semibold text-gray-800 mb-3">Network Infrastructure</h3>
                                 <p class="text-gray-600 mb-4">High-performance wired and wireless networks designed for smart home and business needs.</p>
-                                <a href="#contact" class="text-indigo-600 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
+                                <a href="#contact" class="text-stone-700 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
                             </div>
                             <div class="service-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
                                 <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center mb-6">
-                                    <i class="fas fa-lightbulb text-indigo-600 text-2xl"></i>
+                                    <i class="fas fa-lightbulb text-stone-700 text-2xl"></i>
                                 </div>
                                 <h3 class="text-xl font-semibold text-gray-800 mb-3">Lighting Design</h3>
                                 <p class="text-gray-600 mb-4">Custom lighting solutions that create ambiance while optimizing energy efficiency.</p>
-                                <a href="#contact" class="text-indigo-600 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
+                                <a href="#contact" class="text-stone-700 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
                             </div>
                             <div class="service-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
                                 <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center mb-6">
-                                    <i class="fas fa-headset text-indigo-600 text-2xl"></i>
+                                    <i class="fas fa-headset text-stone-700 text-2xl"></i>
                                 </div>
                                 <h3 class="text-xl font-semibold text-gray-800 mb-3">24/7 Support</h3>
                                 <p class="text-gray-600 mb-4">Dedicated technical support and maintenance services to ensure your systems run smoothly.</p>
-                                <a href="#contact" class="text-indigo-600 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
+                                <a href="#contact" class="text-stone-700 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
                             </div>
                         </div>
                     </div>
@@ -370,7 +390,7 @@
                                 <div class="p-6">
                                     <h3 class="text-xl font-semibold text-gray-800 mb-2">Modern Smart Home</h3>
                                     <p class="text-gray-600 mb-4">Complete home automation system with voice control and energy monitoring.</p>
-                                    <a href="#contact" class="text-indigo-600 font-medium">View Details</a>
+                                    <a href="#contact" class="text-stone-700 font-medium">View Details</a>
                                 </div>
                             </div>
                             <div class="gallery-item overflow-hidden rounded-xl shadow-lg bg-white">
@@ -378,7 +398,7 @@
                                 <div class="p-6">
                                     <h3 class="text-xl font-semibold text-gray-800 mb-2">Luxury Hotel Automation</h3>
                                     <p class="text-gray-600 mb-4">Integrated room control system for a 5-star hotel with 200+ rooms.</p>
-                                    <a href="#contact" class="text-indigo-600 font-medium">View Details</a>
+                                    <a href="#contact" class="text-stone-700 font-medium">View Details</a>
                                 </div>
                             </div>
                             <div class="gallery-item overflow-hidden rounded-xl shadow-lg bg-white">
@@ -386,7 +406,7 @@
                                 <div class="p-6">
                                     <h3 class="text-xl font-semibold text-gray-800 mb-2">Office Building Retrofit</h3>
                                     <p class="text-gray-600 mb-4">Energy-saving automation system for a 50,000 sq ft commercial space.</p>
-                                    <a href="#contact" class="text-indigo-600 font-medium">View Details</a>
+                                    <a href="#contact" class="text-stone-700 font-medium">View Details</a>
                                 </div>
                             </div>
                         </div>
@@ -478,7 +498,7 @@
                                 <div class="space-y-6">
                                     <div class="flex items-start">
                                         <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
-                                            <i class="fas fa-map-marker-alt text-indigo-600"></i>
+                                            <i class="fas fa-map-marker-alt text-stone-700"></i>
                                         </div>
                                         <div>
                                             <h4 class="font-medium text-gray-800">Address</h4>
@@ -487,7 +507,7 @@
                                     </div>
                                     <div class="flex items-start">
                                         <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
-                                            <i class="fas fa-phone-alt text-indigo-600"></i>
+                                            <i class="fas fa-phone-alt text-stone-700"></i>
                                         </div>
                                         <div>
                                             <h4 class="font-medium text-gray-800">Phone</h4>
@@ -496,7 +516,7 @@
                                     </div>
                                     <div class="flex items-start">
                                         <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
-                                            <i class="fas fa-envelope text-indigo-600"></i>
+                                            <i class="fas fa-envelope text-stone-700"></i>
                                         </div>
                                         <div>
                                             <h4 class="font-medium text-gray-800">Email</h4>
@@ -508,16 +528,16 @@
                                     <h4 class="font-medium text-gray-800 mb-4">Follow Us</h4>
                                     <div class="flex space-x-4">
                                         <a href="#contact" class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-indigo-100 transition duration-300">
-                                            <i class="fab fa-facebook-f text-indigo-600"></i>
+                                            <i class="fab fa-facebook-f text-stone-700"></i>
                                         </a>
                                         <a href="#contact" class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-indigo-100 transition duration-300">
-                                            <i class="fab fa-twitter text-indigo-600"></i>
+                                            <i class="fab fa-twitter text-stone-700"></i>
                                         </a>
                                         <a href="#contact" class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-indigo-100 transition duration-300">
-                                            <i class="fab fa-instagram text-indigo-600"></i>
+                                            <i class="fab fa-instagram text-stone-700"></i>
                                         </a>
                                         <a href="#contact" class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-indigo-100 transition duration-300">
-                                            <i class="fab fa-linkedin-in text-indigo-600"></i>
+                                            <i class="fab fa-linkedin-in text-stone-700"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -567,11 +587,11 @@
                     <div class="container mx-auto px-6">
                         <div class="flex flex-col md:flex-row items-center">
                             <div class="md:w-1/2 mb-10 md:mb-0">
-                                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Surface <span class="text-amber-500">Transformation</span></h1>
+                                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Surface <span class="text-amber-800">Transformation</span></h1>
                                 <p class="text-xl text-gray-600 mb-8">Elevate your spaces with our expert painting and surface design services that combine artistry with precision craftsmanship.</p>
                                 <div class="flex space-x-4">
                                     <button class="bg-amber-500 hover:bg-amber-600 text-white px-6 py-3 rounded-lg font-medium transition duration-300">Get a Free Estimate</button>
-                                    <button class="border border-amber-500 text-amber-500 hover:bg-amber-50 px-6 py-3 rounded-lg font-medium transition duration-300">View Portfolio</button>
+                                    <button class="border border-amber-500 text-amber-800 hover:bg-amber-50 px-6 py-3 rounded-lg font-medium transition duration-300">View Portfolio</button>
                                 </div>
                             </div>
                             <div class="md:w-1/2">
@@ -619,51 +639,51 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             <div class="service-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
                                 <div class="w-14 h-14 bg-amber-100 rounded-full flex items-center justify-center mb-6">
-                                    <i class="fas fa-paint-roller text-amber-500 text-2xl"></i>
+                                    <i class="fas fa-paint-roller text-amber-800 text-2xl"></i>
                                 </div>
                                 <h3 class="text-xl font-semibold text-gray-800 mb-3">Interior Painting</h3>
                                 <p class="text-gray-600 mb-4">Professional interior painting services using premium quality paints and precise application techniques.</p>
-                                <a href="#contact" class="text-amber-500 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
+                                <a href="#contact" class="text-amber-800 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
                             </div>
                             <div class="service-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
                                 <div class="w-14 h-14 bg-amber-100 rounded-full flex items-center justify-center mb-6">
-                                    <i class="fas fa-home text-amber-500 text-2xl"></i>
+                                    <i class="fas fa-home text-amber-800 text-2xl"></i>
                                 </div>
                                 <h3 class="text-xl font-semibold text-gray-800 mb-3">Exterior Painting</h3>
                                 <p class="text-gray-600 mb-4">Durable exterior finishes that protect and enhance your property's curb appeal in all weather conditions.</p>
-                                <a href="#contact" class="text-amber-500 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
+                                <a href="#contact" class="text-amber-800 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
                             </div>
                             <div class="service-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
                                 <div class="w-14 h-14 bg-amber-100 rounded-full flex items-center justify-center mb-6">
-                                    <i class="fas fa-spray-can text-amber-500 text-2xl"></i>
+                                    <i class="fas fa-spray-can text-amber-800 text-2xl"></i>
                                 </div>
                                 <h3 class="text-xl font-semibold text-gray-800 mb-3">Decorative Finishes</h3>
                                 <p class="text-gray-600 mb-4">Custom decorative techniques including faux finishes, Venetian plaster, and textured wall treatments.</p>
-                                <a href="#contact" class="text-amber-500 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
+                                <a href="#contact" class="text-amber-800 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
                             </div>
                             <div class="service-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
                                 <div class="w-14 h-14 bg-amber-100 rounded-full flex items-center justify-center mb-6">
-                                    <i class="fas fa-building text-amber-500 text-2xl"></i>
+                                    <i class="fas fa-building text-amber-800 text-2xl"></i>
                                 </div>
                                 <h3 class="text-xl font-semibold text-gray-800 mb-3">Commercial Painting</h3>
                                 <p class="text-gray-600 mb-4">Efficient painting solutions for businesses, offices, and retail spaces with minimal disruption.</p>
-                                <a href="#contact" class="text-amber-500 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
+                                <a href="#contact" class="text-amber-800 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
                             </div>
                             <div class="service-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
                                 <div class="w-14 h-14 bg-amber-100 rounded-full flex items-center justify-center mb-6">
-                                    <i class="fas fa-brush text-amber-500 text-2xl"></i>
+                                    <i class="fas fa-brush text-amber-800 text-2xl"></i>
                                 </div>
                                 <h3 class="text-xl font-semibold text-gray-800 mb-3">Cabinet Refinishing</h3>
                                 <p class="text-gray-600 mb-4">Transform your kitchen or bathroom with our professional cabinet painting and refinishing services.</p>
-                                <a href="#contact" class="text-amber-500 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
+                                <a href="#contact" class="text-amber-800 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
                             </div>
                             <div class="service-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
                                 <div class="w-14 h-14 bg-amber-100 rounded-full flex items-center justify-center mb-6">
-                                    <i class="fas fa-palette text-amber-500 text-2xl"></i>
+                                    <i class="fas fa-palette text-amber-800 text-2xl"></i>
                                 </div>
                                 <h3 class="text-xl font-semibold text-gray-800 mb-3">Color Consultation</h3>
                                 <p class="text-gray-600 mb-4">Expert guidance in selecting the perfect color schemes for your home or business spaces.</p>
-                                <a href="#contact" class="text-amber-500 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
+                                <a href="#contact" class="text-amber-800 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
                             </div>
                         </div>
                     </div>
@@ -682,7 +702,7 @@
                                 <div class="p-6">
                                     <h3 class="text-xl font-semibold text-gray-800 mb-2">Modern Living Room</h3>
                                     <p class="text-gray-600 mb-4">Custom color scheme with decorative wall finishes.</p>
-                                    <a href="#contact" class="text-amber-500 font-medium">View Details</a>
+                                    <a href="#contact" class="text-amber-800 font-medium">View Details</a>
                                 </div>
                             </div>
                             <div class="gallery-item overflow-hidden rounded-xl shadow-lg bg-white">
@@ -690,7 +710,7 @@
                                 <div class="p-6">
                                     <h3 class="text-xl font-semibold text-gray-800 mb-2">Historic Home Exterior</h3>
                                     <p class="text-gray-600 mb-4">Period-accurate color restoration with premium paints.</p>
-                                    <a href="#contact" class="text-amber-500 font-medium">View Details</a>
+                                    <a href="#contact" class="text-amber-800 font-medium">View Details</a>
                                 </div>
                             </div>
                             <div class="gallery-item overflow-hidden rounded-xl shadow-lg bg-white">
@@ -698,7 +718,7 @@
                                 <div class="p-6">
                                     <h3 class="text-xl font-semibold text-gray-800 mb-2">Office Space Makeover</h3>
                                     <p class="text-gray-600 mb-4">Complete commercial repaint with minimal downtime.</p>
-                                    <a href="#contact" class="text-amber-500 font-medium">View Details</a>
+                                    <a href="#contact" class="text-amber-800 font-medium">View Details</a>
                                 </div>
                             </div>
                         </div>
@@ -790,7 +810,7 @@
                                 <div class="space-y-6">
                                     <div class="flex items-start">
                                         <div class="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center mr-4">
-                                            <i class="fas fa-map-marker-alt text-amber-500"></i>
+                                            <i class="fas fa-map-marker-alt text-amber-800"></i>
                                         </div>
                                         <div>
                                             <h4 class="font-medium text-gray-800">Address</h4>
@@ -799,7 +819,7 @@
                                     </div>
                                     <div class="flex items-start">
                                         <div class="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center mr-4">
-                                            <i class="fas fa-phone-alt text-amber-500"></i>
+                                            <i class="fas fa-phone-alt text-amber-800"></i>
                                         </div>
                                         <div>
                                             <h4 class="font-medium text-gray-800">Phone</h4>
@@ -808,7 +828,7 @@
                                     </div>
                                     <div class="flex items-start">
                                         <div class="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center mr-4">
-                                            <i class="fas fa-envelope text-amber-500"></i>
+                                            <i class="fas fa-envelope text-amber-800"></i>
                                         </div>
                                         <div>
                                             <h4 class="font-medium text-gray-800">Email</h4>
@@ -820,16 +840,16 @@
                                     <h4 class="font-medium text-gray-800 mb-4">Follow Us</h4>
                                     <div class="flex space-x-4">
                                         <a href="#contact" class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-amber-100 transition duration-300">
-                                            <i class="fab fa-facebook-f text-amber-500"></i>
+                                            <i class="fab fa-facebook-f text-amber-800"></i>
                                         </a>
                                         <a href="#contact" class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-amber-100 transition duration-300">
-                                            <i class="fab fa-twitter text-amber-500"></i>
+                                            <i class="fab fa-twitter text-amber-800"></i>
                                         </a>
                                         <a href="#contact" class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-amber-100 transition duration-300">
-                                            <i class="fab fa-instagram text-amber-500"></i>
+                                            <i class="fab fa-instagram text-amber-800"></i>
                                         </a>
                                         <a href="#contact" class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-amber-100 transition duration-300">
-                                            <i class="fab fa-pinterest-p text-amber-500"></i>
+                                            <i class="fab fa-pinterest-p text-amber-800"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -872,7 +892,7 @@
                 </section>
             </section>
         </div>
-    <section id="production-demo" class="py-20 bg-slate-50"><div class="container mx-auto px-6"><div class="text-center mb-12"><p class="text-indigo-600 font-semibold uppercase tracking-wide">Demo content</p><h2 class="text-3xl font-bold text-gray-800 mb-4">Proof customers can trust</h2><p class="text-gray-600">Sample production content below is clearly marked for replacement with verified business information.</p></div><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"><article class="bg-white p-6 rounded-xl shadow-sm"><h3 class="text-xl font-semibold mb-3">Smart home retrofit</h3><p><b>Challenge:</b> Disconnected controls and high energy use.</p><p><b>Solution:</b> Integrated lighting, climate and access controls.</p><p><b>Timeline:</b> Demo duration: 3 weeks.</p><p><b>Materials:</b> Approved hubs, sensors, cabling and fixtures.</p><p><b>Result:</b> One dashboard and documented handover.</p></article><article class="bg-white p-6 rounded-xl shadow-sm"><h3 class="text-xl font-semibold mb-3">Retail repaint</h3><p><b>Challenge:</b> Refresh a busy shop without a long closure.</p><p><b>Solution:</b> Phased preparation and overnight work.</p><p><b>Timeline:</b> Demo duration: 5 working days.</p><p><b>Materials:</b> Primer, durable coating and protective finishes.</p><p><b>Result:</b> Consistent finish delivered in agreed phases.</p></article><article class="bg-white p-6 rounded-xl shadow-sm"><h3 class="text-xl font-semibold mb-3">Starting prices — demo</h3><p class="text-2xl font-bold text-indigo-600">From GHS 1,500</p><p>Automation survey and recommendations.</p><p class="text-2xl font-bold text-amber-500">From GHS 120/m²</p><p>Interior painting with preparation and two coats.</p><p class="text-sm text-gray-500">Replace with approved prices, taxes and service area.</p></article></div><div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6"><article class="bg-white p-6 rounded-xl shadow-sm"><h3 class="text-xl font-semibold mb-3">Our process</h3><ol class="list-decimal ml-5 space-y-2"><li>Discover: listen, inspect and clarify.</li><li>Plan: provide scope, materials, timeline and price.</li><li>Deliver: protect the site and communicate.</li><li>Handover: complete quality and warranty documentation.</li></ol></article><article class="bg-white p-6 rounded-xl shadow-sm"><h3 class="text-xl font-semibold mb-3">Trust details — demo</h3><p>Founder profiles, certifications, insurance, warranties and coverage should be published only after verification.</p><p><b>Demo area:</b> Accra, Tema and nearby districts.</p><p><b>Demo warranty:</b> 12 months workmanship coverage.</p></article></div><div class="mt-8 bg-white p-6 rounded-xl shadow-sm"><h3 class="text-xl font-semibold mb-4">Frequently asked questions</h3><details class="mb-3"><summary class="font-medium">How long does a project take?</summary><p class="mt-2 text-gray-600">A written timeline follows the site survey and depends on access, materials and approvals.</p></details><details class="mb-3"><summary class="font-medium">Do you require a deposit?</summary><p class="mt-2 text-gray-600">Publish the approved deposit, payment schedule and cancellation terms here.</p></details><details><summary class="font-medium">What warranty do you provide?</summary><p class="mt-2 text-gray-600">Separate workmanship coverage from manufacturer warranties and publish both.</p></details></div><div class="text-center mt-8"><a href="booking.html" class="inline-block bg-indigo-600 text-white px-6 py-3 rounded-lg font-medium">Book a consultation</a><a href="demo.html" class="inline-block ml-3 border border-indigo-600 text-indigo-600 px-6 py-3 rounded-lg font-medium">View full production demo</a></div></div></section></main>
+    <section id="production-demo" class="py-20 bg-slate-50"><div class="container mx-auto px-6"><div class="text-center mb-12"><p class="text-stone-700 font-semibold uppercase tracking-wide">Demo content</p><h2 class="text-3xl font-bold text-gray-800 mb-4">Proof customers can trust</h2><p class="text-gray-600">Sample production content below is clearly marked for replacement with verified business information.</p></div><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"><article class="bg-white p-6 rounded-xl shadow-sm"><h3 class="text-xl font-semibold mb-3">Smart home retrofit</h3><p><b>Challenge:</b> Disconnected controls and high energy use.</p><p><b>Solution:</b> Integrated lighting, climate and access controls.</p><p><b>Timeline:</b> Demo duration: 3 weeks.</p><p><b>Materials:</b> Approved hubs, sensors, cabling and fixtures.</p><p><b>Result:</b> One dashboard and documented handover.</p></article><article class="bg-white p-6 rounded-xl shadow-sm"><h3 class="text-xl font-semibold mb-3">Retail repaint</h3><p><b>Challenge:</b> Refresh a busy shop without a long closure.</p><p><b>Solution:</b> Phased preparation and overnight work.</p><p><b>Timeline:</b> Demo duration: 5 working days.</p><p><b>Materials:</b> Primer, durable coating and protective finishes.</p><p><b>Result:</b> Consistent finish delivered in agreed phases.</p></article><article class="bg-white p-6 rounded-xl shadow-sm"><h3 class="text-xl font-semibold mb-3">Starting prices — demo</h3><p class="text-2xl font-bold text-stone-700">From GHS 1,500</p><p>Automation survey and recommendations.</p><p class="text-2xl font-bold text-amber-800">From GHS 120/m²</p><p>Interior painting with preparation and two coats.</p><p class="text-sm text-gray-500">Replace with approved prices, taxes and service area.</p></article></div><div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6"><article class="bg-white p-6 rounded-xl shadow-sm"><h3 class="text-xl font-semibold mb-3">Our process</h3><ol class="list-decimal ml-5 space-y-2"><li>Discover: listen, inspect and clarify.</li><li>Plan: provide scope, materials, timeline and price.</li><li>Deliver: protect the site and communicate.</li><li>Handover: complete quality and warranty documentation.</li></ol></article><article class="bg-white p-6 rounded-xl shadow-sm"><h3 class="text-xl font-semibold mb-3">Trust details — demo</h3><p>Founder profiles, certifications, insurance, warranties and coverage should be published only after verification.</p><p><b>Demo area:</b> Accra, Tema and nearby districts.</p><p><b>Demo warranty:</b> 12 months workmanship coverage.</p></article></div><div class="mt-8 bg-white p-6 rounded-xl shadow-sm"><h3 class="text-xl font-semibold mb-4">Frequently asked questions</h3><details class="mb-3"><summary class="font-medium">How long does a project take?</summary><p class="mt-2 text-gray-600">A written timeline follows the site survey and depends on access, materials and approvals.</p></details><details class="mb-3"><summary class="font-medium">Do you require a deposit?</summary><p class="mt-2 text-gray-600">Publish the approved deposit, payment schedule and cancellation terms here.</p></details><details><summary class="font-medium">What warranty do you provide?</summary><p class="mt-2 text-gray-600">Separate workmanship coverage from manufacturer warranties and publish both.</p></details></div><div class="text-center mt-8"><a href="booking.html" class="inline-block bg-indigo-600 text-white px-6 py-3 rounded-lg font-medium">Book a consultation</a><a href="demo.html" class="inline-block ml-3 border border-indigo-600 text-stone-700 px-6 py-3 rounded-lg font-medium">View full production demo</a></div></div></section></main>
 
     <!-- Footer -->
     <div id="cookie-notice" class="fixed bottom-0 inset-x-0 bg-gray-900 text-white p-4 z-50 flex flex-col md:flex-row gap-3 justify-between items-center"><span>Demo cookie notice: analytics should load only after consent.</span><button id="dismiss-cookie" type="button" class="bg-white text-gray-900 px-4 py-2 rounded">Dismiss</button></div><footer class="bg-gray-800 text-white py-12">
@@ -881,7 +901,7 @@
                 <div class="mb-8 md:mb-0">
                     <div class="flex items-center mb-4">
                         <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center mr-3">
-                            <i class="fas fa-lightbulb text-indigo-600 text-xl"></i>
+                            <i class="fas fa-lightbulb text-stone-700 text-xl"></i>
                         </div>
                         <span class="text-xl font-bold text-white">Luznex</span>
                     </div>
@@ -900,7 +920,7 @@
                 <div class="mb-8 md:mb-0">
                     <div class="flex items-center mb-4">
                         <div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center mr-3">
-                            <i class="fas fa-paint-roller text-amber-500 text-xl"></i>
+                            <i class="fas fa-paint-roller text-amber-800 text-xl"></i>
                         </div>
                         <span class="text-xl font-bold text-white">Dewutts</span>
                     </div>
@@ -997,6 +1017,8 @@
     </script>
 <script>document.getElementById("dismiss-cookie").addEventListener("click",function(){document.getElementById("cookie-notice").remove();localStorage.setItem("cookie-notice-dismissed","true")});if(localStorage.getItem("cookie-notice-dismissed"))document.getElementById("cookie-notice").remove();</script></body>
 </html>
+
+
 
 
 
