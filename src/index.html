@@ -1,1025 +1,1394 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Luznex smart automation and Dewutts painting and design services.">
-    <meta name="theme-color" content="#111827">
-    <title>Luznex & Dewutts - Connected Brands</title>
+    <title>LUZNEX & DEWUTTS | Ultra-Luxury Automation & Architectural Finishes</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --luznex-primary: #d6b27a;
-            --luznex-secondary: #6f583a;
-            --dewutts-primary: #8a5a25;
-            --dewutts-secondary: #d5b47f;
-            --ink: #f5f3ef;
-            --surface: #111827;
-            --line: #2d3547;
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        luznex: {
+                            DEFAULT: '#5856D6',
+                            glow: '#7A78FF',
+                            dark: '#0A0915',
+                            card: '#121124',
+                            accent: '#AF52DE'
+                        },
+                        dewutts: {
+                            DEFAULT: '#C59B27',
+                            gold: '#D4AF37',
+                            sand: '#FAF7F2',
+                            dark: '#1C1917',
+                            card: '#FFFBF5',
+                            cream: '#F4EFE6'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif']
+                    }
+                }
+            }
         }
-        
-        body {
-            font-family: Georgia, 'Times New Roman', serif;
-            background: var(--surface);
-            color: var(--ink);
-            overflow-x: hidden;
-            transition: background-color 0.5s ease;
+    </script>
+
+    <style>
+        /* Custom Luxury Scrollbar & Root Variables */
+        :root {
+            --brand-primary: #5856D6;
+            --brand-secondary: #AF52DE;
+            --brand-bg: #090813;
+            --brand-text: #F3F4F6;
+            --brand-card: rgba(18, 17, 36, 0.7);
+            --brand-border: rgba(255, 255, 255, 0.1);
         }
 
-        h1, h2, h3 { font-family: 'Cormorant Garamond', serif; letter-spacing: -.045em; }
-        .luxury-nav { background: rgba(17,24,39,.78); backdrop-filter: blur(18px); border: 1px solid var(--line); border-radius: 999px; }
-        .luxury-hero { min-height: 88vh; background: radial-gradient(circle at 72% 25%, rgba(111,88,58,.26), transparent 28%), radial-gradient(circle at 12% 70%, rgba(214,178,122,.08), transparent 30%); }
-        .luxury-hero h1 { font-size: clamp(5rem, 12vw, 10rem); line-height: .78; }
-        .luxury-kicker { color: var(--luznex-primary); letter-spacing: .2em; text-transform: uppercase; font-size: .68rem; font-weight: 700; }
-        .luxury-panel { background: rgba(17,24,39,.74); border: 1px solid var(--line); backdrop-filter: blur(14px); }
-        .luxury-rule { border-color: var(--line) !important; }
-        .luxury-link { color: var(--ink) !important; }
-        .luxury-link:hover { color: var(--luznex-primary) !important; }
-        .luxury-image { filter: saturate(.78) contrast(1.04); transition: transform .6s ease, filter .6s ease; }
-        .luxury-image:hover { transform: scale(1.025); filter: saturate(1) contrast(1.04); }
-        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
-        
-        .brand-container {
-            display: flex;
-            width: 200%;
-            transition: transform 0.7s cubic-bezier(0.77, 0, 0.175, 1);
+        body.brand-dewutts {
+            --brand-primary: #C59B27;
+            --brand-secondary: #D4AF37;
+            --brand-bg: #FAF7F2;
+            --brand-text: #1C1917;
+            --brand-card: rgba(255, 251, 245, 0.85);
+            --brand-border: rgba(197, 155, 39, 0.2);
         }
-        
-        .brand-section {
-            width: 50%;
-            padding: 0 5%;
+
+        body.brand-dewutts.dark {
+            --brand-bg: #12100E;
+            --brand-text: #F5F2EB;
+            --brand-card: rgba(28, 25, 23, 0.85);
+            --brand-border: rgba(212, 175, 55, 0.2);
         }
-        
-        .active-brand {
-            transform: translateX(0);
+
+        /* Glassmorphism Styles */
+        .glass-panel {
+            background: var(--brand-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--brand-border);
         }
-        
-        .dewutts-active {
-            transform: translateX(-50%);
-        }
-        
-        .nav-link {
-            position: relative;
-        }
-        
-        .nav-link::after {
-            content: '';
+
+        /* Animated Ambient Background Glows */
+        .ambient-glow {
             position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background-color: currentColor;
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
-        .service-card {
-            transition: all 0.3s ease;
-            transform-origin: center;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-        
-        .gallery-item {
-            transition: all 0.3s ease;
-        }
-        
-        .gallery-item:hover {
-            transform: scale(1.03);
-        }
-        
-        .testimonial-card {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.5s ease;
-        }
-        
-        .testimonial-card.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .toggle-switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-        }
-        
-        .toggle-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 34px;
-        }
-        
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
             border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.35;
+            pointer-events: none;
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        
-        input:checked + .slider {
-            background-color: #4f46e5;
+
+        /* 3D Tilt Card Container */
+        .tilt-card {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        
-        input:checked + .slider:before {
-            transform: translateX(26px);
+
+        .tilt-card:hover {
+            transform: translateY(-6px) rotateX(2deg) rotateY(-1deg);
         }
-        
-        .dark-mode {
-            background-color: #1a1a1a;
-            color: #f3f4f6;
+
+        /* Before-After Slider Drag Handle */
+        .ba-slider {
+            position: relative;
+            overflow: hidden;
+            user-select: none;
         }
-        
-        .dark-mode .bg-white {
-            background-color: #2d2d2d !important;
-            color: #f3f4f6 !important;
+
+        /* Custom Horizontal Brand Transition Mask */
+        .brand-transition-overlay {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, #0A0915 0%, #C59B27 100%);
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s cubic-bezier(0.85, 0, 0.15, 1), opacity 0.6s ease;
         }
-        
-        .dark-mode .text-gray-700 {
-            color: #d1d5db !important;
+
+        .brand-transition-active {
+            opacity: 1;
+            transform: scaleX(1);
         }
-        
-        .dark-mode .text-gray-800 {
-            color: #e5e7eb !important;
+
+        /* Gold Shimmer Button Effect */
+        .btn-shimmer {
+            background-size: 200% auto;
+            transition: 0.5s;
         }
-        
-        .dark-mode .bg-gray-100 {
-            background-color: #333333 !important;
+        .btn-shimmer:hover {
+            background-position: right center;
         }
-        
-        .dark-mode .border-gray-200 {
-            border-color: #444444 !important;
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-            #production-demo { background: #f4f1ea; position: relative; overflow: hidden; }
-        #production-demo::before { content: ""; position: absolute; inset: 0 0 auto; height: 1px; background: rgba(79,70,229,.25); }
-        #production-demo > .container { position: relative; }
-        #production-demo .text-center > p:first-child { letter-spacing: .18em; font-size: .72rem; }
-        #production-demo .text-center h2 { font-size: clamp(2.2rem, 5vw, 4.5rem); letter-spacing: -.045em; line-height: .98; max-width: 12ch; margin-left: auto; margin-right: auto; }
-        #production-demo article { border: 0; border-radius: 22px; box-shadow: 0 18px 48px rgba(31,41,55,.08); transition: transform .35s ease, box-shadow .35s ease; }
-        #production-demo article:hover { transform: translateY(-6px); box-shadow: 0 24px 58px rgba(31,41,55,.14); }
-        #production-demo article:first-child { background: #20204b !important; color: #f8fafc; }
-        #production-demo article:first-child h3 { color: #c7d2fe; }
-        #production-demo article:nth-child(2) { background: #fffaf0 !important; }
-        #production-demo article:nth-child(3) { background: #f5a524 !important; color: #261b05; }
-        #production-demo article:nth-child(3) h3 { color: #261b05; }
-        #production-demo article p { line-height: 1.75; }
-        #production-demo article p b { font-weight: 700; }
-        #production-demo ol { counter-reset: process; list-style: none; margin-left: 0; }
-        #production-demo ol li { counter-increment: process; display: grid; grid-template-columns: 2.5rem 1fr; gap: .75rem; align-items: start; }
-        #production-demo ol li::before { content: counter(process); color: #4f46e5; font-weight: 800; font-size: 1.2rem; }
-        #production-demo details { border-top: 1px solid #e5e7eb; padding: 1rem 0; }
-        #production-demo details summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; }
-        #production-demo details summary::after { content: "+"; color: #4f46e5; font-size: 1.3rem; }
-        #production-demo details[open] summary::after { content: "−"; }
-        #production-demo a { transition: transform .2s ease, background-color .2s ease; }
-        #production-demo a:hover { transform: translateY(-2px); }
-        @media (prefers-reduced-motion: reduce) { #production-demo article, #production-demo a { transition: none; } }</style>
-<style id="impeccable-fixes">body{letter-spacing:.005em}h1,h2,h3{font-family:Georgia,"Times New Roman",serif}p,.text-sm,.text-xs{color:var(--muted)}.bg-white{background:#171c27!important}.text-stone-700{color:#d6b27a!important}.text-amber-800{color:#b47a35!important}.container{padding-left:2rem;padding-right:2rem}.nav-link{letter-spacing:.03em}.service-card{border:1px solid var(--line);padding:1.5rem;background:rgba(255,255,255,.025)}@media(max-width:640px){.container{padding-left:1.25rem;padding-right:1.25rem}}</style></head>
-<body class="bg-gray-50">
-    <!-- Header -->
-    <header class="fixed w-full bg-transparent shadow-none z-50 px-4 pt-4">
-        <div class="container mx-auto px-6 py-3 luxury-nav">
-            <div class="flex items-center justify-between">
-                <!-- Luznex Logo -->
-                <div class="flex items-center cursor-pointer brand-switch" data-brand="luznex">
-                    <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center mr-3">
-                        <i class="fas fa-lightbulb text-stone-700 text-xl"></i>
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(150, 150, 150, 0.3);
+            border-radius: 999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(150, 150, 150, 0.5);
+        }
+
+        /* Hide details marker */
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, ::before, ::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+<style id="impeccable-accessibility-fixes">
+body.brand-dewutts:not(.dark){background:#faf7f2!important;color:#1c1917!important}body.brand-dewutts:not(.dark) .bg-[#090813]{background:#faf7f2!important}body.brand-dewutts:not(.dark) .text-gray-300,body.brand-dewutts:not(.dark) .text-gray-400{color:#514a40!important}body.brand-dewutts:not(.dark) .text-white{color:#1c1917!important}body.brand-dewutts:not(.dark) .glass-panel{background:rgba(255,251,245,.96);border-color:rgba(115,82,27,.22)}body.brand-dewutts:not(.dark) .glass-panel .text-white,body.brand-dewutts:not(.dark) .glass-panel h3{color:#1c1917!important}body.brand-dewutts:not(.dark) .glass-panel .text-gray-300,body.brand-dewutts:not(.dark) .glass-panel .text-gray-400{color:#514a40!important}body.brand-dewutts:not(.dark) .bg-black\/40{background:rgba(62,45,20,.08)!important;color:#1c1917!important}.bg-clip-text{background-image:none!important;-webkit-text-fill-color:currentColor!important}.glass-panel .glass-panel{background:transparent;backdrop-filter:none}.tilt-card:hover{transform:translateY(-3px)}
+</style><style id="impeccable-motion">@keyframes luxe-rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}@keyframes luxe-fade{from{opacity:0}to{opacity:1}}#hero>*{animation:luxe-rise .9s cubic-bezier(.16,1,.3,1) both}#hero>*:nth-child(2){animation-delay:.12s}section{animation:luxe-fade .8s ease both}.service-card,.glass-panel{transition:transform .35s cubic-bezier(.16,1,.3,1),border-color .35s,box-shadow .35s}.service-card:hover{transform:translateY(-5px);box-shadow:0 18px 45px rgba(0,0,0,.16)}@media(prefers-reduced-motion:reduce){#hero>*,section{animation:none!important}.service-card,.glass-panel{transition:none!important}}</style></head>
+<body class="font-sans antialiased text-gray-900 dark:text-gray-100 bg-[#090813] transition-colors duration-700" id="app-body">
+
+    <!-- Brand Transition Curtain -->
+    <div id="brand-curtain" class="brand-transition-overlay"></div>
+
+    <!-- Sticky Glassmorphic Header Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 px-4 sm:px-8">
+        <div class="max-w-7xl mx-auto glass-panel rounded-full px-6 py-3 flex items-center justify-between shadow-2xl transition-all duration-500">
+            
+            <!-- Brand Logo Group -->
+            <div class="flex items-center space-x-6">
+                <a href="#hero" class="flex items-center space-x-3 group">
+                    <div id="brand-icon-box" class="w-10 h-10 rounded-full flex items-center justify-center text-white bg-gradient-to-tr from-luznex to-luznex-accent shadow-lg shadow-luznex/30 transition-all duration-500 group-hover:opacity-95">
+                        <i id="nav-brand-icon" data-lucide="cpu" class="w-5 h-5"></i>
                     </div>
-                    <span class="text-xl font-bold text-stone-700">Luznex</span>
-                </div>
-                
-                <!-- Navigation -->
-                <nav class="hidden md:flex space-x-8">
-                    <a href="#contact" class="nav-link text-gray-700 hover:text-stone-700 font-medium">Home</a>
-                    <a href="#services" class="nav-link text-gray-700 hover:text-stone-700 font-medium">Services</a>
-                    <a href="#projects" class="nav-link text-gray-700 hover:text-stone-700 font-medium">Projects</a>
-                    <a href="#testimonials" class="nav-link text-gray-700 hover:text-stone-700 font-medium">Testimonials</a>
-                    <a href="#contact" class="nav-link text-gray-700 hover:text-stone-700 font-medium">Contact Us</a>
-                </nav>
-                
-                <!-- Dewutts Logo -->
-                <div class="flex items-center cursor-pointer brand-switch" data-brand="dewutts">
-                    <div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center mr-3">
-                        <i class="fas fa-paint-roller text-amber-800 text-xl"></i>
+                    <div>
+                        <span id="nav-brand-title" class="font-serif text-2xl font-bold tracking-wider uppercase text-white text-gray-900">
+                            LUZNEX
+                        </span>
+                        <span id="nav-brand-sub" class="block text-[10px] tracking-widest text-gray-400 uppercase font-sans">
+                            Automation Concierge
+                        </span>
                     </div>
-                    <span class="text-xl font-bold text-amber-800">Dewutts</span>
-                </div>
-                
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-gray-700" type="button" aria-label="Open navigation" aria-expanded="false">
-                        <i class="fas fa-bars text-2xl"></i>
+                </a>
+
+                <!-- Brand Switcher Pills -->
+                <div class="hidden md:flex items-center bg-black/20 dark:bg-white/5 p-1 rounded-full border border-white/10">
+                    <button onclick="switchBrand('luznex')" id="btn-switch-luznex" class="px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider transition-all duration-300 flex items-center space-x-2 bg-luznex text-white shadow-md">
+                        <i data-lucide="zap" class="w-3.5 h-3.5"></i>
+                        <span>LUZNEX</span>
+                    </button>
+                    <button onclick="switchBrand('dewutts')" id="btn-switch-dewutts" class="px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider transition-all duration-300 flex items-center space-x-2 text-gray-400 hover:text-white">
+                        <i data-lucide="paint-bucket" class="w-3.5 h-3.5"></i>
+                        <span>DEWUTTS</span>
                     </button>
                 </div>
             </div>
+
+            <!-- Navigation Links -->
+            <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium tracking-wide">
+                <a href="#services" class="hover:text-luznex transition-colors duration-200 flex items-center space-x-1">
+                    <span>Services</span>
+                </a>
+                <a href="#portfolio" class="hover:text-luznex transition-colors duration-200">Showcase</a>
+                <a href="#calculator" class="hover:text-luznex transition-colors duration-200">Estimator</a>
+                <a href="#process" class="hover:text-luznex transition-colors duration-200">Process</a>
+                <a href="#faq" class="hover:text-luznex transition-colors duration-200">FAQ</a>
+            </nav>
+
+            <!-- Action Controls -->
+            <div class="flex items-center space-x-3">
+                <!-- Dark Mode Switcher -->
+                <button onclick="toggleDarkMode()" class="p-2.5 rounded-full bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white transition-all border border-white/10" title="Toggle Visual Theme">
+                    <i data-lucide="moon" id="theme-icon" class="w-4 h-4"></i>
+                </button>
+
+                <!-- Consultation Drawer Trigger -->
+                <button onclick="openModal('calculator')" id="nav-cta-btn" class="hidden sm:inline-flex items-center space-x-2 px-5 py-2.5 rounded-full text-xs uppercase font-bold tracking-widest text-white bg-gradient-to-r from-luznex to-purple-600 hover:opacity-90 transition-all shadow-lg shadow-luznex/25 hover:shadow-xl hover:scale-105 active:scale-95">
+                    <span>Private Estimate</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="lg:hidden p-2.5 rounded-full bg-white/5 text-gray-200 border border-white/10">
+                    <i data-lucide="menu" id="mobile-menu-icon" class="w-5 h-5"></i>
+                </button>
+            </div>
         </div>
-        
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
-            <div class="container mx-auto px-6 py-4">
-                <div class="flex flex-col space-y-4">
-                    <a href="#contact" class="nav-link text-gray-700 hover:text-stone-700 font-medium">Home</a>
-                    <a href="#services" class="nav-link text-gray-700 hover:text-stone-700 font-medium">Services</a>
-                    <a href="#projects" class="nav-link text-gray-700 hover:text-stone-700 font-medium">Projects</a>
-                    <a href="#testimonials" class="nav-link text-gray-700 hover:text-stone-700 font-medium">Testimonials</a>
-                    <a href="#contact" class="nav-link text-gray-700 hover:text-stone-700 font-medium">Contact Us</a>
+
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobile-menu" class="hidden lg:hidden max-w-7xl mx-auto mt-2 glass-panel rounded-2xl p-6 transition-all duration-300 shadow-2xl">
+            <div class="flex flex-col space-y-4 text-center">
+                <div class="flex justify-center p-1 bg-black/20 rounded-full border border-white/10 mb-2">
+                    <button onclick="switchBrand('luznex')" class="w-1/2 py-2 rounded-full text-xs font-bold transition-all" id="mob-switch-luznex">LUZNEX</button>
+                    <button onclick="switchBrand('dewutts')" class="w-1/2 py-2 rounded-full text-xs font-bold transition-all text-gray-400" id="mob-switch-dewutts">DEWUTTS</button>
                 </div>
+                <a href="#services" onclick="toggleMobileMenu()" class="py-2 hover:text-luznex text-lg font-medium border-b border-white/5">Services & Spec</a>
+                <a href="#portfolio" onclick="toggleMobileMenu()" class="py-2 hover:text-luznex text-lg font-medium border-b border-white/5">Portfolio Showcase</a>
+                <a href="#calculator" onclick="toggleMobileMenu()" class="py-2 hover:text-luznex text-lg font-medium border-b border-white/5">Estimate Calculator</a>
+                <a href="#process" onclick="toggleMobileMenu()" class="py-2 hover:text-luznex text-lg font-medium border-b border-white/5">Architectural Process</a>
+                <a href="#faq" onclick="toggleMobileMenu()" class="py-2 hover:text-luznex text-lg font-medium">FAQ & Support</a>
+                <button onclick="openModal('calculator'); toggleMobileMenu();" class="w-full py-3 rounded-xl text-xs font-bold uppercase tracking-widest text-white bg-gradient-to-r from-luznex to-purple-600 shadow-lg mt-2">
+                    Request Concierge Estimate
+                </button>
             </div>
         </div>
     </header>
 
-    <!-- Dark Mode Toggle -->
-    <div class="fixed bottom-6 right-6 z-50">
-        <label class="toggle-switch">
-            <input type="checkbox" id="dark-mode-toggle">
-            <span class="slider"></span>
-        </label>
-    </div>
+    <!-- HERO SECTION -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center pt-32 pb-20 px-4 sm:px-8 overflow-hidden">
+        <!-- Ambient Glowing Orbs -->
+        <div id="ambient-orb-1" class="ambient-glow w-96 h-96 bg-luznex top-1/4 -left-20"></div>
+        <div id="ambient-orb-2" class="ambient-glow w-[500px] h-[500px] bg-purple-600 bottom-10 -right-32"></div>
 
-    <!-- Main Content -->
-    <main class="pt-24 luxury-hero">
-        <div class="brand-container active-brand">
-            <!-- Luznex Section -->
-            <section class="brand-section" id="luznex">
-                <!-- Hero Section -->
-                <section class="py-20">
-                    <div class="container mx-auto px-6">
-                        <div class="flex flex-col md:flex-row items-center">
-                            <div class="md:w-1/2 mb-10 md:mb-0">
-                                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Smart Living <span class="text-stone-700">Simplified</span></h1>
-                                <p class="text-xl text-gray-600 mb-8">Transform your home or business with our cutting-edge automation solutions that blend technology with comfort.</p>
-                                <div class="flex space-x-4">
-                                    <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition duration-300">Get a Free Consultation</button>
-                                    <button class="border border-indigo-600 text-stone-700 hover:bg-indigo-50 px-6 py-3 rounded-lg font-medium transition duration-300">View Projects</button>
-                                </div>
-                            </div>
-                            <div class="md:w-1/2">
-                                <img src="https://images.unsplash.com/photo-1558002038-1055907df827?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Smart Home Automation" class="rounded-xl shadow-xl">
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- About Section -->
-                <section class="py-20 bg-indigo-50">
-                    <div class="container mx-auto px-6">
-                        <div class="text-center mb-16">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-4">About Luznex</h2>
-                            <div class="w-20 h-1 bg-indigo-600 mx-auto"></div>
-                        </div>
-                        <div class="flex flex-col md:flex-row items-center">
-                            <div class="md:w-1/2 mb-10 md:mb-0">
-                                <img src="https://images.unsplash.com/photo-1560520031-3a4dc4e9de0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="About Luznex" class="rounded-xl shadow-lg">
-                            </div>
-                            <div class="md:w-1/2 md:pl-12">
-                                <h3 class="text-2xl font-semibold text-gray-800 mb-6">Innovating Spaces with Intelligent Technology</h3>
-                                <p class="text-gray-600 mb-6">Founded in 2015, Luznex has been at the forefront of home and business automation, delivering seamless integration of technology into everyday living and working environments.</p>
-                                <p class="text-gray-600 mb-6">Our team of certified professionals combines technical expertise with creative problem-solving to design systems that are intuitive, reliable, and future-proof.</p>
-                                <div class="flex items-center">
-                                    <div class="flex -space-x-2">
-                                        <img class="w-10 h-10 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/women/12.jpg" alt="Team member">
-                                        <img class="w-10 h-10 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Team member">
-                                        <img class="w-10 h-10 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/women/45.jpg" alt="Team member">
-                                    </div>
-                                    <span class="ml-4 text-gray-600">20+ Certified Professionals</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- Services Section -->
-                <section class="py-20" id="services">
-                    <div class="container mx-auto px-6">
-                        <div class="text-center mb-16">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-4">Our Services</h2>
-                            <div class="w-20 h-1 bg-indigo-600 mx-auto"></div>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            <div class="service-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
-                                <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center mb-6">
-                                    <i class="fas fa-home text-stone-700 text-2xl"></i>
-                                </div>
-                                <h3 class="text-xl font-semibold text-gray-800 mb-3">Smart Home Automation</h3>
-                                <p class="text-gray-600 mb-4">Complete control of lighting, climate, security, and entertainment systems through intuitive interfaces.</p>
-                                <a href="#contact" class="text-stone-700 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
-                            </div>
-                            <div class="service-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
-                                <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center mb-6">
-                                    <i class="fas fa-building text-stone-700 text-2xl"></i>
-                                </div>
-                                <h3 class="text-xl font-semibold text-gray-800 mb-3">Commercial Automation</h3>
-                                <p class="text-gray-600 mb-4">Energy-efficient solutions for offices, retail spaces, and hospitality venues that enhance operations.</p>
-                                <a href="#contact" class="text-stone-700 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
-                            </div>
-                            <div class="service-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
-                                <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center mb-6">
-                                    <i class="fas fa-shield-alt text-stone-700 text-2xl"></i>
-                                </div>
-                                <h3 class="text-xl font-semibold text-gray-800 mb-3">Security Systems</h3>
-                                <p class="text-gray-600 mb-4">Comprehensive surveillance, access control, and alarm systems integrated with smart notifications.</p>
-                                <a href="#contact" class="text-stone-700 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
-                            </div>
-                            <div class="service-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
-                                <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center mb-6">
-                                    <i class="fas fa-network-wired text-stone-700 text-2xl"></i>
-                                </div>
-                                <h3 class="text-xl font-semibold text-gray-800 mb-3">Network Infrastructure</h3>
-                                <p class="text-gray-600 mb-4">High-performance wired and wireless networks designed for smart home and business needs.</p>
-                                <a href="#contact" class="text-stone-700 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
-                            </div>
-                            <div class="service-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
-                                <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center mb-6">
-                                    <i class="fas fa-lightbulb text-stone-700 text-2xl"></i>
-                                </div>
-                                <h3 class="text-xl font-semibold text-gray-800 mb-3">Lighting Design</h3>
-                                <p class="text-gray-600 mb-4">Custom lighting solutions that create ambiance while optimizing energy efficiency.</p>
-                                <a href="#contact" class="text-stone-700 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
-                            </div>
-                            <div class="service-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
-                                <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center mb-6">
-                                    <i class="fas fa-headset text-stone-700 text-2xl"></i>
-                                </div>
-                                <h3 class="text-xl font-semibold text-gray-800 mb-3">24/7 Support</h3>
-                                <p class="text-gray-600 mb-4">Dedicated technical support and maintenance services to ensure your systems run smoothly.</p>
-                                <a href="#contact" class="text-stone-700 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- Projects Gallery -->
-                <section class="py-20 bg-indigo-50" id="projects">
-                    <div class="container mx-auto px-6">
-                        <div class="text-center mb-16">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-4">Our Projects</h2>
-                            <div class="w-20 h-1 bg-indigo-600 mx-auto"></div>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <div class="gallery-item overflow-hidden rounded-xl shadow-lg bg-white">
-                                <img src="https://images.unsplash.com/photo-1558002038-1055907df827?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Project 1" class="w-full h-64 object-cover">
-                                <div class="p-6">
-                                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Modern Smart Home</h3>
-                                    <p class="text-gray-600 mb-4">Complete home automation system with voice control and energy monitoring.</p>
-                                    <a href="#contact" class="text-stone-700 font-medium">View Details</a>
-                                </div>
-                            </div>
-                            <div class="gallery-item overflow-hidden rounded-xl shadow-lg bg-white">
-                                <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Project 2" class="w-full h-64 object-cover">
-                                <div class="p-6">
-                                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Luxury Hotel Automation</h3>
-                                    <p class="text-gray-600 mb-4">Integrated room control system for a 5-star hotel with 200+ rooms.</p>
-                                    <a href="#contact" class="text-stone-700 font-medium">View Details</a>
-                                </div>
-                            </div>
-                            <div class="gallery-item overflow-hidden rounded-xl shadow-lg bg-white">
-                                <img src="https://images.unsplash.com/photo-1517502884422-41eaead166d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Project 3" class="w-full h-64 object-cover">
-                                <div class="p-6">
-                                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Office Building Retrofit</h3>
-                                    <p class="text-gray-600 mb-4">Energy-saving automation system for a 50,000 sq ft commercial space.</p>
-                                    <a href="#contact" class="text-stone-700 font-medium">View Details</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-center mt-12">
-                            <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-lg font-medium transition duration-300">View All Projects</button>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- Testimonials -->
-                <section class="py-20" id="testimonials">
-                    <div class="container mx-auto px-6">
-                        <div class="text-center mb-16">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-4">Client Testimonials</h2>
-                            <div class="w-20 h-1 bg-indigo-600 mx-auto"></div>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            <div class="testimonial-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
-                                <div class="flex items-center mb-6">
-                                    <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
-                                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Client" class="w-full h-full object-cover">
-                                    </div>
-                                    <div>
-                                        <h4 class="font-semibold text-gray-800">Sarah Johnson</h4>
-                                        <p class="text-gray-600 text-sm">Homeowner</p>
-                                    </div>
-                                </div>
-                                <p class="text-gray-600 mb-4">"Luznex transformed our home into a smart, efficient space that's both beautiful and functional. Their attention to detail and customer service is exceptional."</p>
-                                <div class="flex text-amber-400">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                            </div>
-                            <div class="testimonial-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
-                                <div class="flex items-center mb-6">
-                                    <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
-                                        <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="Client" class="w-full h-full object-cover">
-                                    </div>
-                                    <div>
-                                        <h4 class="font-semibold text-gray-800">Michael Chen</h4>
-                                        <p class="text-gray-600 text-sm">Business Owner</p>
-                                    </div>
-                                </div>
-                                <p class="text-gray-600 mb-4">"The automation system Luznex installed in our office has significantly improved our energy efficiency and employee comfort. Their team was professional and knowledgeable."</p>
-                                <div class="flex text-amber-400">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                            </div>
-                            <div class="testimonial-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
-                                <div class="flex items-center mb-6">
-                                    <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
-                                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Client" class="w-full h-full object-cover">
-                                    </div>
-                                    <div>
-                                        <h4 class="font-semibold text-gray-800">Emily Rodriguez</h4>
-                                        <p class="text-gray-600 text-sm">Hotel Manager</p>
-                                    </div>
-                                </div>
-                                <p class="text-gray-600 mb-4">"Working with Luznex on our hotel automation project was a game-changer. Their solutions have enhanced our guest experience while reducing operational costs."</p>
-                                <div class="flex text-amber-400">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- Contact Section -->
-                <section class="py-20 bg-indigo-50" id="contact">
-                    <div class="container mx-auto px-6">
-                        <div class="text-center mb-16">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-4">Get In Touch</h2>
-                            <div class="w-20 h-1 bg-indigo-600 mx-auto"></div>
-                        </div>
-                        <div class="flex flex-col md:flex-row">
-                            <div class="md:w-1/2 mb-10 md:mb-0">
-                                <h3 class="text-2xl font-semibold text-gray-800 mb-6">Contact Information</h3>
-                                <div class="space-y-6">
-                                    <div class="flex items-start">
-                                        <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
-                                            <i class="fas fa-map-marker-alt text-stone-700"></i>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-medium text-gray-800">Address</h4>
-                                            <p class="text-gray-600">123 Automation Way, Tech City, TC 12345</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-start">
-                                        <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
-                                            <i class="fas fa-phone-alt text-stone-700"></i>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-medium text-gray-800">Phone</h4>
-                                            <p class="text-gray-600">(555) 123-4567</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-start">
-                                        <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
-                                            <i class="fas fa-envelope text-stone-700"></i>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-medium text-gray-800">Email</h4>
-                                            <p class="text-gray-600">info@luznex.com</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mt-10">
-                                    <h4 class="font-medium text-gray-800 mb-4">Follow Us</h4>
-                                    <div class="flex space-x-4">
-                                        <a href="#contact" class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-indigo-100 transition duration-300">
-                                            <i class="fab fa-facebook-f text-stone-700"></i>
-                                        </a>
-                                        <a href="#contact" class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-indigo-100 transition duration-300">
-                                            <i class="fab fa-twitter text-stone-700"></i>
-                                        </a>
-                                        <a href="#contact" class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-indigo-100 transition duration-300">
-                                            <i class="fab fa-instagram text-stone-700"></i>
-                                        </a>
-                                        <a href="#contact" class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-indigo-100 transition duration-300">
-                                            <i class="fab fa-linkedin-in text-stone-700"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="md:w-1/2 md:pl-12">
-                                <form class="bg-white p-8 rounded-xl shadow-md">
-                                    <h3 class="text-2xl font-semibold text-gray-800 mb-6">Request a Quote</h3>
-                                    <div class="mb-6">
-                                        <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
-                                        <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
-                                    </div>
-                                    <div class="mb-6">
-                                        <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
-                                        <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
-                                    </div>
-                                    <div class="mb-6">
-                                        <label for="phone" class="block text-gray-700 font-medium mb-2">Phone</label>
-                                        <input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
-                                    </div>
-                                    <div class="mb-6">
-                                        <label for="service" class="block text-gray-700 font-medium mb-2">Service Interested In</label>
-                                        <select id="service" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
-                                            <option value="">Select a service</option>
-                                            <option value="home-automation">Home Automation</option>
-                                            <option value="commercial-automation">Commercial Automation</option>
-                                            <option value="security-systems">Security Systems</option>
-                                            <option value="network-infrastructure">Network Infrastructure</option>
-                                            <option value="lighting-design">Lighting Design</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-6">
-                                        <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
-                                        <textarea id="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"></textarea>
-                                    </div>
-                                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition duration-300">Submit Request</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </section>
+        <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
             
-            <!-- Dewutts Section -->
-            <section class="brand-section" id="dewutts">
-                <!-- Hero Section -->
-                <section class="py-20">
-                    <div class="container mx-auto px-6">
-                        <div class="flex flex-col md:flex-row items-center">
-                            <div class="md:w-1/2 mb-10 md:mb-0">
-                                <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Surface <span class="text-amber-800">Transformation</span></h1>
-                                <p class="text-xl text-gray-600 mb-8">Elevate your spaces with our expert painting and surface design services that combine artistry with precision craftsmanship.</p>
-                                <div class="flex space-x-4">
-                                    <button class="bg-amber-500 hover:bg-amber-600 text-white px-6 py-3 rounded-lg font-medium transition duration-300">Get a Free Estimate</button>
-                                    <button class="border border-amber-500 text-amber-800 hover:bg-amber-50 px-6 py-3 rounded-lg font-medium transition duration-300">View Portfolio</button>
-                                </div>
-                            </div>
-                            <div class="md:w-1/2">
-                                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Interior Painting" class="rounded-xl shadow-xl">
-                            </div>
-                        </div>
-                    </div>
-                </section>
+            <!-- Hero Copy -->
+            <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
                 
-                <!-- About Section -->
-                <section class="py-20 bg-amber-50">
-                    <div class="container mx-auto px-6">
-                        <div class="text-center mb-16">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-4">About Dewutts</h2>
-                            <div class="w-20 h-1 bg-amber-500 mx-auto"></div>
-                        </div>
-                        <div class="flex flex-col md:flex-row items-center">
-                            <div class="md:w-1/2 mb-10 md:mb-0">
-                                <img src="https://images.unsplash.com/photo-1600121848594-d8644e57abab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="About Dewutts" class="rounded-xl shadow-lg">
-                            </div>
-                            <div class="md:w-1/2 md:pl-12">
-                                <h3 class="text-2xl font-semibold text-gray-800 mb-6">Transforming Spaces with Color & Texture</h3>
-                                <p class="text-gray-600 mb-6">Established in 2012, Dewutts has built a reputation for excellence in painting and surface design, serving both residential and commercial clients with creative solutions.</p>
-                                <p class="text-gray-600 mb-6">Our team of skilled artisans combines technical expertise with artistic vision to deliver finishes that exceed expectations and stand the test of time.</p>
-                                <div class="flex items-center">
-                                    <div class="flex -space-x-2">
-                                        <img class="w-10 h-10 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/men/22.jpg" alt="Team member">
-                                        <img class="w-10 h-10 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/women/33.jpg" alt="Team member">
-                                        <img class="w-10 h-10 rounded-full border-2 border-white" src="https://randomuser.me/api/portraits/men/44.jpg" alt="Team member">
-                                    </div>
-                                    <span class="ml-4 text-gray-600">15+ Master Craftsmen</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- Services Section -->
-                <section class="py-20" id="services">
-                    <div class="container mx-auto px-6">
-                        <div class="text-center mb-16">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-4">Our Services</h2>
-                            <div class="w-20 h-1 bg-amber-500 mx-auto"></div>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            <div class="service-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
-                                <div class="w-14 h-14 bg-amber-100 rounded-full flex items-center justify-center mb-6">
-                                    <i class="fas fa-paint-roller text-amber-800 text-2xl"></i>
-                                </div>
-                                <h3 class="text-xl font-semibold text-gray-800 mb-3">Interior Painting</h3>
-                                <p class="text-gray-600 mb-4">Professional interior painting services using premium quality paints and precise application techniques.</p>
-                                <a href="#contact" class="text-amber-800 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
-                            </div>
-                            <div class="service-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
-                                <div class="w-14 h-14 bg-amber-100 rounded-full flex items-center justify-center mb-6">
-                                    <i class="fas fa-home text-amber-800 text-2xl"></i>
-                                </div>
-                                <h3 class="text-xl font-semibold text-gray-800 mb-3">Exterior Painting</h3>
-                                <p class="text-gray-600 mb-4">Durable exterior finishes that protect and enhance your property's curb appeal in all weather conditions.</p>
-                                <a href="#contact" class="text-amber-800 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
-                            </div>
-                            <div class="service-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
-                                <div class="w-14 h-14 bg-amber-100 rounded-full flex items-center justify-center mb-6">
-                                    <i class="fas fa-spray-can text-amber-800 text-2xl"></i>
-                                </div>
-                                <h3 class="text-xl font-semibold text-gray-800 mb-3">Decorative Finishes</h3>
-                                <p class="text-gray-600 mb-4">Custom decorative techniques including faux finishes, Venetian plaster, and textured wall treatments.</p>
-                                <a href="#contact" class="text-amber-800 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
-                            </div>
-                            <div class="service-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
-                                <div class="w-14 h-14 bg-amber-100 rounded-full flex items-center justify-center mb-6">
-                                    <i class="fas fa-building text-amber-800 text-2xl"></i>
-                                </div>
-                                <h3 class="text-xl font-semibold text-gray-800 mb-3">Commercial Painting</h3>
-                                <p class="text-gray-600 mb-4">Efficient painting solutions for businesses, offices, and retail spaces with minimal disruption.</p>
-                                <a href="#contact" class="text-amber-800 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
-                            </div>
-                            <div class="service-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
-                                <div class="w-14 h-14 bg-amber-100 rounded-full flex items-center justify-center mb-6">
-                                    <i class="fas fa-brush text-amber-800 text-2xl"></i>
-                                </div>
-                                <h3 class="text-xl font-semibold text-gray-800 mb-3">Cabinet Refinishing</h3>
-                                <p class="text-gray-600 mb-4">Transform your kitchen or bathroom with our professional cabinet painting and refinishing services.</p>
-                                <a href="#contact" class="text-amber-800 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
-                            </div>
-                            <div class="service-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
-                                <div class="w-14 h-14 bg-amber-100 rounded-full flex items-center justify-center mb-6">
-                                    <i class="fas fa-palette text-amber-800 text-2xl"></i>
-                                </div>
-                                <h3 class="text-xl font-semibold text-gray-800 mb-3">Color Consultation</h3>
-                                <p class="text-gray-600 mb-4">Expert guidance in selecting the perfect color schemes for your home or business spaces.</p>
-                                <a href="#contact" class="text-amber-800 font-medium flex items-center">Learn more <i class="fas fa-arrow-right ml-2"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- Projects Gallery -->
-                <section class="py-20 bg-amber-50" id="projects">
-                    <div class="container mx-auto px-6">
-                        <div class="text-center mb-16">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-4">Our Portfolio</h2>
-                            <div class="w-20 h-1 bg-amber-500 mx-auto"></div>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <div class="gallery-item overflow-hidden rounded-xl shadow-lg bg-white">
-                                <img src="https://images.unsplash.com/photo-1600121848594-d8644e57abab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Project 1" class="w-full h-64 object-cover">
-                                <div class="p-6">
-                                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Modern Living Room</h3>
-                                    <p class="text-gray-600 mb-4">Custom color scheme with decorative wall finishes.</p>
-                                    <a href="#contact" class="text-amber-800 font-medium">View Details</a>
-                                </div>
-                            </div>
-                            <div class="gallery-item overflow-hidden rounded-xl shadow-lg bg-white">
-                                <img src="https://images.unsplash.com/photo-1600566752227-17c8c0c69d22?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Project 2" class="w-full h-64 object-cover">
-                                <div class="p-6">
-                                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Historic Home Exterior</h3>
-                                    <p class="text-gray-600 mb-4">Period-accurate color restoration with premium paints.</p>
-                                    <a href="#contact" class="text-amber-800 font-medium">View Details</a>
-                                </div>
-                            </div>
-                            <div class="gallery-item overflow-hidden rounded-xl shadow-lg bg-white">
-                                <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Project 3" class="w-full h-64 object-cover">
-                                <div class="p-6">
-                                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Office Space Makeover</h3>
-                                    <p class="text-gray-600 mb-4">Complete commercial repaint with minimal downtime.</p>
-                                    <a href="#contact" class="text-amber-800 font-medium">View Details</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-center mt-12">
-                            <button class="bg-amber-500 hover:bg-amber-600 text-white px-8 py-3 rounded-lg font-medium transition duration-300">View Full Portfolio</button>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- Testimonials -->
-                <section class="py-20" id="testimonials">
-                    <div class="container mx-auto px-6">
-                        <div class="text-center mb-16">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-4">Client Testimonials</h2>
-                            <div class="w-20 h-1 bg-amber-500 mx-auto"></div>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            <div class="testimonial-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
-                                <div class="flex items-center mb-6">
-                                    <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
-                                        <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Client" class="w-full h-full object-cover">
-                                    </div>
-                                    <div>
-                                        <h4 class="font-semibold text-gray-800">Jennifer Martinez</h4>
-                                        <p class="text-gray-600 text-sm">Homeowner</p>
-                                    </div>
-                                </div>
-                                <p class="text-gray-600 mb-4">"Dewutts transformed our dated living room into a modern masterpiece. Their attention to detail and color expertise was beyond our expectations."</p>
-                                <div class="flex text-amber-400">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                            </div>
-                            <div class="testimonial-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
-                                <div class="flex items-center mb-6">
-                                    <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
-                                        <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Client" class="w-full h-full object-cover">
-                                    </div>
-                                    <div>
-                                        <h4 class="font-semibold text-gray-800">Robert Williams</h4>
-                                        <p class="text-gray-600 text-sm">Business Owner</p>
-                                    </div>
-                                </div>
-                                <p class="text-gray-600 mb-4">"The commercial painting job Dewutts did for our office was completed on time and with minimal disruption. The quality of work was exceptional."</p>
-                                <div class="flex text-amber-400">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                            </div>
-                            <div class="testimonial-card bg-white p-8 rounded-xl shadow-md border border-gray-100">
-                                <div class="flex items-center mb-6">
-                                    <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
-                                        <img src="https://randomuser.me/api/portraits/women/78.jpg" alt="Client" class="w-full h-full object-cover">
-                                    </div>
-                                    <div>
-                                        <h4 class="font-semibold text-gray-800">Amanda Thompson</h4>
-                                        <p class="text-gray-600 text-sm">Interior Designer</p>
-                                    </div>
-                                </div>
-                                <p class="text-gray-600 mb-4">"I regularly collaborate with Dewutts on projects because their craftsmanship is unparalleled. Their decorative finishes add incredible value to my designs."</p>
-                                <div class="flex text-amber-400">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- Contact Section -->
-                <section class="py-20 bg-amber-50" id="contact">
-                    <div class="container mx-auto px-6">
-                        <div class="text-center mb-16">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-4">Get In Touch</h2>
-                            <div class="w-20 h-1 bg-amber-500 mx-auto"></div>
-                        </div>
-                        <div class="flex flex-col md:flex-row">
-                            <div class="md:w-1/2 mb-10 md:mb-0">
-                                <h3 class="text-2xl font-semibold text-gray-800 mb-6">Contact Information</h3>
-                                <div class="space-y-6">
-                                    <div class="flex items-start">
-                                        <div class="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center mr-4">
-                                            <i class="fas fa-map-marker-alt text-amber-800"></i>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-medium text-gray-800">Address</h4>
-                                            <p class="text-gray-600">456 Design Avenue, Art District, AD 67890</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-start">
-                                        <div class="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center mr-4">
-                                            <i class="fas fa-phone-alt text-amber-800"></i>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-medium text-gray-800">Phone</h4>
-                                            <p class="text-gray-600">(555) 987-6543</p>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-start">
-                                        <div class="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center mr-4">
-                                            <i class="fas fa-envelope text-amber-800"></i>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-medium text-gray-800">Email</h4>
-                                            <p class="text-gray-600">info@dewutts.com</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mt-10">
-                                    <h4 class="font-medium text-gray-800 mb-4">Follow Us</h4>
-                                    <div class="flex space-x-4">
-                                        <a href="#contact" class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-amber-100 transition duration-300">
-                                            <i class="fab fa-facebook-f text-amber-800"></i>
-                                        </a>
-                                        <a href="#contact" class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-amber-100 transition duration-300">
-                                            <i class="fab fa-twitter text-amber-800"></i>
-                                        </a>
-                                        <a href="#contact" class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-amber-100 transition duration-300">
-                                            <i class="fab fa-instagram text-amber-800"></i>
-                                        </a>
-                                        <a href="#contact" class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:bg-amber-100 transition duration-300">
-                                            <i class="fab fa-pinterest-p text-amber-800"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="md:w-1/2 md:pl-12">
-                                <form class="bg-white p-8 rounded-xl shadow-md">
-                                    <h3 class="text-2xl font-semibold text-gray-800 mb-6">Request an Estimate</h3>
-                                    <div class="mb-6">
-                                        <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
-                                        <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent">
-                                    </div>
-                                    <div class="mb-6">
-                                        <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
-                                        <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent">
-                                    </div>
-                                    <div class="mb-6">
-                                        <label for="phone" class="block text-gray-700 font-medium mb-2">Phone</label>
-                                        <input type="tel" id="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent">
-                                    </div>
-                                    <div class="mb-6">
-                                        <label for="service" class="block text-gray-700 font-medium mb-2">Service Interested In</label>
-                                        <select id="service" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent">
-                                            <option value="">Select a service</option>
-                                            <option value="interior-painting">Interior Painting</option>
-                                            <option value="exterior-painting">Exterior Painting</option>
-                                            <option value="decorative-finishes">Decorative Finishes</option>
-                                            <option value="commercial-painting">Commercial Painting</option>
-                                            <option value="cabinet-refinishing">Cabinet Refinishing</option>
-                                        </select>
-                                    </div>
-                                    <div class="mb-6">
-                                        <label for="message" class="block text-gray-700 font-medium mb-2">Project Details</label>
-                                        <textarea id="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-transparent"></textarea>
-                                    </div>
-                                    <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-white px-6 py-3 rounded-lg font-medium transition duration-300">Request Estimate</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </section>
-        </div>
-    <section id="production-demo" class="py-20 bg-slate-50"><div class="container mx-auto px-6"><div class="text-center mb-12"><p class="text-stone-700 font-semibold uppercase tracking-wide">Demo content</p><h2 class="text-3xl font-bold text-gray-800 mb-4">Proof customers can trust</h2><p class="text-gray-600">Sample production content below is clearly marked for replacement with verified business information.</p></div><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"><article class="bg-white p-6 rounded-xl shadow-sm"><h3 class="text-xl font-semibold mb-3">Smart home retrofit</h3><p><b>Challenge:</b> Disconnected controls and high energy use.</p><p><b>Solution:</b> Integrated lighting, climate and access controls.</p><p><b>Timeline:</b> Demo duration: 3 weeks.</p><p><b>Materials:</b> Approved hubs, sensors, cabling and fixtures.</p><p><b>Result:</b> One dashboard and documented handover.</p></article><article class="bg-white p-6 rounded-xl shadow-sm"><h3 class="text-xl font-semibold mb-3">Retail repaint</h3><p><b>Challenge:</b> Refresh a busy shop without a long closure.</p><p><b>Solution:</b> Phased preparation and overnight work.</p><p><b>Timeline:</b> Demo duration: 5 working days.</p><p><b>Materials:</b> Primer, durable coating and protective finishes.</p><p><b>Result:</b> Consistent finish delivered in agreed phases.</p></article><article class="bg-white p-6 rounded-xl shadow-sm"><h3 class="text-xl font-semibold mb-3">Starting prices — demo</h3><p class="text-2xl font-bold text-stone-700">From GHS 1,500</p><p>Automation survey and recommendations.</p><p class="text-2xl font-bold text-amber-800">From GHS 120/m²</p><p>Interior painting with preparation and two coats.</p><p class="text-sm text-gray-500">Replace with approved prices, taxes and service area.</p></article></div><div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6"><article class="bg-white p-6 rounded-xl shadow-sm"><h3 class="text-xl font-semibold mb-3">Our process</h3><ol class="list-decimal ml-5 space-y-2"><li>Discover: listen, inspect and clarify.</li><li>Plan: provide scope, materials, timeline and price.</li><li>Deliver: protect the site and communicate.</li><li>Handover: complete quality and warranty documentation.</li></ol></article><article class="bg-white p-6 rounded-xl shadow-sm"><h3 class="text-xl font-semibold mb-3">Trust details — demo</h3><p>Founder profiles, certifications, insurance, warranties and coverage should be published only after verification.</p><p><b>Demo area:</b> Accra, Tema and nearby districts.</p><p><b>Demo warranty:</b> 12 months workmanship coverage.</p></article></div><div class="mt-8 bg-white p-6 rounded-xl shadow-sm"><h3 class="text-xl font-semibold mb-4">Frequently asked questions</h3><details class="mb-3"><summary class="font-medium">How long does a project take?</summary><p class="mt-2 text-gray-600">A written timeline follows the site survey and depends on access, materials and approvals.</p></details><details class="mb-3"><summary class="font-medium">Do you require a deposit?</summary><p class="mt-2 text-gray-600">Publish the approved deposit, payment schedule and cancellation terms here.</p></details><details><summary class="font-medium">What warranty do you provide?</summary><p class="mt-2 text-gray-600">Separate workmanship coverage from manufacturer warranties and publish both.</p></details></div><div class="text-center mt-8"><a href="booking.html" class="inline-block bg-indigo-600 text-white px-6 py-3 rounded-lg font-medium">Book a consultation</a><a href="demo.html" class="inline-block ml-3 border border-indigo-600 text-stone-700 px-6 py-3 rounded-lg font-medium">View full production demo</a></div></div></section></main>
+                <!-- Micro Badge -->
+                <div class="inline-flex items-center space-x-3 px-4 py-2 rounded-full glass-panel text-xs font-semibold tracking-widest uppercase border border-white/10">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 "></span>
+                    <span id="hero-badge" class="text-gray-300">Ultra-Residential & Commercial Portfolio</span>
+                </div>
 
-    <!-- Footer -->
-    <div id="cookie-notice" class="fixed bottom-0 inset-x-0 bg-gray-900 text-white p-4 z-50 flex flex-col md:flex-row gap-3 justify-between items-center"><span>Demo cookie notice: analytics should load only after consent.</span><button id="dismiss-cookie" type="button" class="bg-white text-gray-900 px-4 py-2 rounded">Dismiss</button></div><footer class="bg-gray-800 text-white py-12">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between">
-                <div class="mb-8 md:mb-0">
-                    <div class="flex items-center mb-4">
-                        <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center mr-3">
-                            <i class="fas fa-lightbulb text-stone-700 text-xl"></i>
-                        </div>
-                        <span class="text-xl font-bold text-white">Luznex</span>
-                    </div>
-                    <p class="text-gray-400 max-w-xs">Innovative automation solutions for homes and businesses.</p>
+                <!-- Main Display Heading -->
+                <h1 class="font-serif text-5xl sm:text-7xl lg:text-8xl font-normal leading-[1.05] tracking-tight">
+                    <span id="hero-title-prefix" class="block text-gray-300 font-light">Crafting Intelligent</span>
+                    <span id="hero-title-main" class="italic font-semibold text-white text-white">
+                        Smart Spaces & Control
+                    </span>
+                </h1>
+
+                <!-- Subtitle -->
+                <p id="hero-desc" class="text-lg sm:text-xl text-gray-400 font-light max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                    Elevating architectural luxury with bespoke home automation, fiber network infrastructure, commercial security, and precision architectural lighting systems.
+                </p>
+
+                <!-- Dual Call To Actions -->
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                    <a href="#calculator" class="w-full sm:w-auto px-8 py-4 rounded-full font-bold text-sm uppercase tracking-widest text-white bg-gradient-to-r from-luznex to-luznex-accent hover:opacity-95 shadow-xl shadow-luznex/30 hover:scale-105 active:scale-95 transition-all text-center flex items-center justify-center space-x-3">
+                        <span>Calculate Estimate</span>
+                        <i data-lucide="calculator" class="w-4 h-4"></i>
+                    </a>
+                    
+                    <a href="#portfolio" class="w-full sm:w-auto px-8 py-4 rounded-full font-bold text-sm uppercase tracking-widest text-gray-300 glass-panel hover:bg-white/10 hover:text-white border border-white/10 transition-all text-center flex items-center justify-center space-x-2">
+                        <span>Explore Showcase</span>
+                        <i data-lucide="eye" class="w-4 h-4"></i>
+                    </a>
                 </div>
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#contact" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
-                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300">Services</a></li>
-                        <li><a href="#projects" class="text-gray-400 hover:text-white transition duration-300">Projects</a></li>
-                        <li><a href="#testimonials" class="text-gray-400 hover:text-white transition duration-300">Testimonials</a></li>
-                        <li><a href="#contact" class="text-gray-400 hover:text-white transition duration-300">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div class="mb-8 md:mb-0">
-                    <div class="flex items-center mb-4">
-                        <div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center mr-3">
-                            <i class="fas fa-paint-roller text-amber-800 text-xl"></i>
-                        </div>
-                        <span class="text-xl font-bold text-white">Dewutts</span>
+
+                <!-- Quick Metric Counter Strip -->
+                <div class="pt-8 border-t border-white/10 grid grid-cols-3 gap-4 text-center lg:text-left">
+                    <div>
+                        <span id="metric-1" class="block font-serif text-3xl sm:text-4xl font-bold text-white">480+</span>
+                        <span class="text-xs text-gray-400 uppercase tracking-widest">Projects Completed</span>
                     </div>
-                    <p class="text-gray-400 max-w-xs">Transforming spaces with color and creative surface design.</p>
+                    <div>
+                        <span id="metric-2" class="block font-serif text-3xl sm:text-4xl font-bold text-white">99.8%</span>
+                        <span class="text-xs text-gray-400 uppercase tracking-widest">Client Satisfaction</span>
+                    </div>
+                    <div>
+                        <span id="metric-3" class="block font-serif text-3xl sm:text-4xl font-bold text-white">24/7</span>
+                        <span class="text-xs text-gray-400 uppercase tracking-widest">Concierge Support</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Hero Interactive Visual Stage -->
+            <div class="lg:col-span-5 relative">
+                <div class="relative mx-auto max-w-md lg:max-w-none rounded-3xl overflow-hidden glass-panel p-3 border border-white/15 shadow-2xl tilt-card">
+                    
+                    <!-- Dynamic Hero Image Preview -->
+                    <div class="relative h-[480px] rounded-2xl overflow-hidden group">
+                        <img id="hero-img" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" alt="LUZNEX Smart Automation" class="w-full h-full object-cover transition-transform duration-1000 group-hover:opacity-95">
+                        
+                        <!-- Overlay Glass Card -->
+                        <div class="absolute bottom-4 left-4 right-4 p-5 rounded-2xl glass-panel border border-white/20 backdrop-blur-md">
+                            <div class="flex items-center justify-between mb-2">
+                                <span id="hero-card-tag" class="text-xs font-mono uppercase text-luznex-glow font-bold tracking-wider">Active System Scene</span>
+                                <span class="flex h-2 w-2 relative">
+                                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                  <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                                </span>
+                            </div>
+                            <h3 id="hero-card-title" class="font-serif text-xl font-bold text-white">Architectural Evening Mood</h3>
+                            <p id="hero-card-subtitle" class="text-xs text-gray-300 mt-1">Lutron Palladiom System & Automated Shading Active</p>
+                        </div>
+                    </div>
+
+                    <!-- Dual Split Interactive Selector Bar -->
+                    <div class="mt-3 p-2 bg-black/40 rounded-xl flex items-center justify-between text-xs">
+                        <span class="text-gray-400 pl-2">Toggle Brand View Mode:</span>
+                        <div class="flex space-x-1">
+                            <button onclick="switchBrand('luznex')" class="px-3 py-1.5 rounded-lg font-semibold bg-luznex text-white">Luznex</button>
+                            <button onclick="switchBrand('dewutts')" class="px-3 py-1.5 rounded-lg font-semibold bg-dewutts text-gray-900">Dewutts</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-400 mb-4 md:mb-0">Â© 2025 Luznex All rights reserved.</p>
-                <div class="flex space-x-6">
-                    <a href="#contact" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#contact" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-twitter"></i></a>
-                    <a href="#contact" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-instagram"></i></a>
-                    <a href="#contact" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-linkedin-in"></i></a>
+
+        </div>
+    </section>
+
+    <!-- DUAL BRAND PHILOSOPHY / BANNER -->
+    <section class="py-12 border-y border-white/10 bg-black/20 backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div class="flex items-center space-x-4">
+                <div class="p-3 rounded-2xl bg-luznex/10 text-luznex border border-luznex/20">
+                    <i data-lucide="layers" class="w-8 h-8"></i>
                 </div>
+                <div>
+                    <h3 class="font-serif text-2xl font-bold text-white">Integrated Luxury Ecosystem</h3>
+                    <p class="text-sm text-gray-400">Combine Luznex automation with Dewutts decorative surface finishing for complete estate mastery.</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3 text-xs tracking-widest uppercase font-semibold text-gray-400">
+                <span class="px-3 py-1.5 rounded-md bg-white/5 border border-white/10">Smart Infrastructure</span>
+                <span>+</span>
+                <span class="px-3 py-1.5 rounded-md bg-white/5 border border-white/10">Surface Architecture</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- LUXURY SERVICE CATALOG -->
+    <section id="services" class="py-24 px-4 sm:px-8 relative">
+        <div class="max-w-7xl mx-auto">
+            
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-xs font-mono uppercase tracking-widest text-luznex-glow font-semibold" id="services-badge">Bespoke Offerings</span>
+                <h2 class="font-serif text-4xl sm:text-6xl font-normal" id="services-title">
+                    Master Services Portfolio
+                </h2>
+                <p class="text-gray-400 text-lg font-light" id="services-sub">
+                    Engineered to perfection for high-net-worth residences, luxury boutique hotels, and landmark commercial spaces.
+                </p>
+            </div>
+
+            <!-- Dynamic Service Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="services-grid">
+                <!-- Javascript dynamically renders interactive service cards here -->
+            </div>
+
+        </div>
+    </section>
+
+    <!-- INTERACTIVE BEFORE / AFTER SHOWCASE (PORTFOLIO) -->
+    <section id="portfolio" class="py-24 px-4 sm:px-8 bg-black/30 border-y border-white/10 relative">
+        <div class="max-w-7xl mx-auto space-y-16">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                <div>
+                    <span class="text-xs font-mono uppercase tracking-widest text-dewutts-gold font-semibold">Architectural Showcase</span>
+                    <h2 class="font-serif text-4xl sm:text-6xl font-normal text-white mt-2">Selected Estates & Works</h2>
+                </div>
+                
+                <!-- Category Filter Pills -->
+                <div class="flex flex-wrap gap-2" id="portfolio-filters">
+                    <button onclick="filterPortfolio('all')" class="px-4 py-2 rounded-full text-xs font-semibold tracking-wider bg-white text-black border border-white">All Works</button>
+                    <button onclick="filterPortfolio('residential')" class="px-4 py-2 rounded-full text-xs font-semibold tracking-wider glass-panel text-gray-300 hover:text-white">Residential</button>
+                    <button onclick="filterPortfolio('commercial')" class="px-4 py-2 rounded-full text-xs font-semibold tracking-wider glass-panel text-gray-300 hover:text-white">Commercial</button>
+                    <button onclick="filterPortfolio('finishes')" class="px-4 py-2 rounded-full text-xs font-semibold tracking-wider glass-panel text-gray-300 hover:text-white">Venetian & Finishes</button>
+                </div>
+            </div>
+
+            <!-- Interactive Before/After Split Comparison Card -->
+            <div class="glass-panel rounded-3xl p-6 border border-white/15">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    
+                    <div class="lg:col-span-7 space-y-4">
+                        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 text-xs font-mono">
+                            <i data-lucide="sliders" class="w-3.5 h-3.5"></i>
+                            <span>Interactive Transformation Slider</span>
+                        </div>
+                        
+                        <!-- Before / After Slider Element -->
+                        <div class="ba-slider relative h-[380px] sm:h-[450px] rounded-2xl overflow-hidden shadow-2xl cursor-ew-resize select-none" id="ba-container">
+                            <!-- After Image (Full Background) -->
+                            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80" alt="Completed Transformation" class="absolute inset-0 w-full h-full object-cover">
+                            
+                            <!-- Before Image (Clipped Overlay) -->
+                            <div class="absolute inset-0 w-1/2 overflow-hidden border-r-2 border-white shadow-2xl" id="ba-clipped">
+                                <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80" alt="Before Transformation" class="absolute inset-0 w-full h-full object-cover max-w-none" id="ba-before-img">
+                            </div>
+
+                            <!-- Slider Handle Pin -->
+                            <div class="absolute top-0 bottom-0 left-1/2 w-1 bg-white cursor-ew-resize flex items-center justify-center -ml-0.5 shadow-2xl" id="ba-handle">
+                                <div class="w-9 h-9 rounded-full bg-white text-black shadow-xl flex items-center justify-center font-bold text-xs">
+                                    <i data-lucide="chevrons-left-right" class="w-4 h-4"></i>
+                                </div>
+                            </div>
+
+                            <!-- Labels -->
+                            <span class="absolute top-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-md text-xs font-mono text-white">BEFORE</span>
+                            <span class="absolute top-4 right-4 bg-black/60 backdrop-blur-md px-3 py-1 rounded-md text-xs font-mono text-amber-300">AFTER (DEWUTTS GOLD & LUZNEX LIGHTING)</span>
+                        </div>
+                    </div>
+
+                    <!-- Side Details -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <span class="text-xs font-mono uppercase text-gray-400">Featured Case Study</span>
+                        <h3 class="font-serif text-3xl font-bold text-white">The Bel-Air Penthouse Renovation</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed">
+                            Full architectural overhaul replacing dated drywall with custom Dewutts Italian Venetian Plaster and integrate Lutron Keypad automation, climate zoning, and motorized sheer drapes.
+                        </p>
+
+                        <div class="space-y-3 border-t border-white/10 pt-4 text-xs text-gray-300">
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Scope of Work:</span>
+                                <span class="font-semibold text-white">Automation + Architectural Finishes</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Execution Time:</span>
+                                <span class="font-semibold text-white">3 Weeks</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Client Rating:</span>
+                                <span class="font-semibold text-amber-400">5.0 / 5.0 Exceptional</span>
+                            </div>
+                        </div>
+
+                        <button onclick="openModal('calculator')" class="w-full py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider text-white glass-panel hover:bg-white/10 border border-white/20 transition-all flex items-center justify-center space-x-2">
+                            <span>Request Similar Transformation</span>
+                            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Portfolio Grid Gallery -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="portfolio-grid">
+                <!-- Javascript auto-renders portfolio items -->
+            </div>
+
+        </div>
+    </section>
+
+    <!-- INTERACTIVE ESTIMATE & CONSULTATION CALCULATOR -->
+    <section id="calculator" class="py-24 px-4 sm:px-8 relative">
+        <div class="max-w-5xl mx-auto">
+            
+            <div class="text-center space-y-4 mb-12">
+                <span class="text-xs font-mono uppercase tracking-widest text-luznex-glow font-semibold">Instant Quote Engine</span>
+                <h2 class="font-serif text-4xl sm:text-6xl font-normal">Dynamic Project Estimator</h2>
+                <p class="text-gray-400 text-sm sm:text-base max-w-xl mx-auto">Configure your property parameters below to receive an instant architectural budget projection.</p>
+            </div>
+
+            <div class="glass-panel rounded-3xl p-6 sm:p-10 border border-white/20 shadow-2xl relative overflow-hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    
+                    <!-- Configurator Inputs -->
+                    <div class="lg:col-span-7 space-y-6">
+                        
+                        <!-- Step 1: Select Brand Context -->
+                        <div>
+                            <label class="block text-xs font-mono uppercase text-gray-400 mb-2">1. Select Service Realm</label>
+                            <div class="grid grid-cols-2 gap-3">
+                                <button onclick="setCalcService('luznex')" id="calc-realm-luznex" class="p-3 rounded-xl border border-luznex bg-luznex/20 text-white font-semibold text-xs flex items-center justify-center space-x-2">
+                                    <i data-lucide="cpu" class="w-4 h-4"></i>
+                                    <span>Luznex Automation</span>
+                                </button>
+                                <button onclick="setCalcService('dewutts')" id="calc-realm-dewutts" class="p-3 rounded-xl border border-white/10 glass-panel text-gray-400 font-semibold text-xs flex items-center justify-center space-x-2">
+                                    <i data-lucide="paint-bucket" class="w-4 h-4"></i>
+                                    <span>Dewutts Finishes</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Property Type -->
+                        <div>
+                            <label class="block text-xs font-mono uppercase text-gray-400 mb-2">2. Property Designation</label>
+                            <select id="calc-property-type" onchange="calculateEstimate()" class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-luznex">
+                                <option value="1.0">Luxury Private Residence</option>
+                                <option value="1.25">Penthouse / Estate Compound</option>
+                                <option value="1.15">Commercial / Boutique Hotel</option>
+                                <option value="0.9">Retail / Luxury Showroom</option>
+                            </select>
+                        </div>
+
+                        <!-- Step 3: Square Footage Slider -->
+                        <div>
+                            <div class="flex justify-between text-xs font-mono text-gray-400 mb-2">
+                                <span>3. Approximate Area</span>
+                                <span class="text-white font-bold" id="calc-sqft-val">2,500 Sq. Ft.</span>
+                            </div>
+                            <input type="range" min="500" max="15000" step="250" value="2500" id="calc-sqft-slider" oninput="calculateEstimate()" class="w-full accent-luznex cursor-pointer">
+                        </div>
+
+                        <!-- Step 4: Upgrades Tier -->
+                        <div>
+                            <label class="block text-xs font-mono uppercase text-gray-400 mb-2">4. Specification Level</label>
+                            <div class="grid grid-cols-3 gap-2">
+                                <button onclick="setCalcTier('signature')" id="tier-signature" class="p-3 rounded-xl border border-white/20 text-xs font-semibold text-center">Signature</button>
+                                <button onclick="setCalcTier('prestige')" id="tier-prestige" class="p-3 rounded-xl border border-luznex bg-luznex/30 text-xs font-semibold text-center text-white">Prestige</button>
+                                <button onclick="setCalcTier('bespoke')" id="tier-bespoke" class="p-3 rounded-xl border border-white/20 text-xs font-semibold text-center">Bespoke Ultra</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Estimate Live Output -->
+                    <div class="lg:col-span-5 glass-panel rounded-2xl p-6 border border-white/10 flex flex-col justify-between space-y-6 bg-gradient-to-b from-white/5 to-transparent">
+                        
+                        <div>
+                            <span class="text-xs font-mono uppercase text-gray-400">Estimated Investment Range</span>
+                            <div class="mt-3">
+                                <span class="font-serif text-4xl sm:text-5xl font-bold text-white block" id="calc-price-output">$14,500 - $18,200</span>
+                                <span class="text-xs text-emerald-400 flex items-center space-x-1 mt-1">
+                                    <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i>
+                                    <span>Includes installation, white-glove warranty & concierge onboarding</span>
+                                </span>
+                            </div>
+
+                            <div class="mt-6 space-y-2 text-xs text-gray-300 border-t border-white/10 pt-4">
+                                <div class="flex justify-between">
+                                    <span>Estimated Lead Time:</span>
+                                    <span class="font-semibold text-white" id="calc-lead-time">7 - 12 Business Days</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Warranty Duration:</span>
+                                    <span class="font-semibold text-white">5 Years Comprehensive</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Support Level:</span>
+                                    <span class="font-semibold text-white">Dedicated Private Concierge</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Direct Concierge Booking Action -->
+                        <div class="space-y-3">
+                            <button onclick="submitEstimateToWhatsApp()" class="w-full py-4 rounded-xl text-xs font-bold uppercase tracking-widest text-white bg-gradient-to-r from-emerald-600 to-teal-600 hover:opacity-90 shadow-xl flex items-center justify-center space-x-2">
+                                <i data-lucide="message-square" class="w-4 h-4"></i>
+                                <span>Lock In Estimate via WhatsApp</span>
+                            </button>
+
+                            <button onclick="openModal('booking')" class="w-full py-3 rounded-xl text-xs font-bold uppercase tracking-widest text-gray-300 hover:text-white glass-panel border border-white/10">
+                                Request Private Site Visit
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ARCHITECTURAL EXECUTION PROCESS -->
+    <section id="process" class="py-24 px-4 sm:px-8 border-t border-white/10 relative">
+        <div class="max-w-7xl mx-auto space-y-16">
+            
+            <div class="text-center max-w-3xl mx-auto space-y-4">
+                <span class="text-xs font-mono uppercase tracking-widest text-luznex-glow font-semibold">Execution Blueprint</span>
+                <h2 class="font-serif text-4xl sm:text-6xl font-normal">Precision 4-Step Protocol</h2>
+                <p class="text-gray-400 text-lg font-light">From initial optical scanning to final white-glove handover, our timeline guarantees zero compromises.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Step 1 -->
+                <div class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-luznex/50 transition-all space-y-4">
+                    <span class="font-serif text-4xl font-bold text-luznex opacity-60">01</span>
+                    <h3 class="font-serif text-2xl font-bold text-white">Architectural Audit</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">3D LiDAR scanning of structural surfaces, electrical grid evaluation, and ambient lighting analysis.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-luznex/50 transition-all space-y-4">
+                    <span class="font-serif text-4xl font-bold text-purple-400 opacity-60">02</span>
+                    <h3 class="font-serif text-2xl font-bold text-white">Custom Specification</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">CAD wiring layouts, sample Venetian plaster mockups, and low-voltage system architecture approvals.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-dewutts-gold/50 transition-all space-y-4">
+                    <span class="font-serif text-4xl font-bold text-dewutts-gold opacity-60">03</span>
+                    <h3 class="font-serif text-2xl font-bold text-white">White-Glove Execution</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">Certified master painters and Crestron/Lutron engineers deploy with dustless sanding & minimal footprint.</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="glass-panel p-6 rounded-2xl border border-white/10 hover:border-emerald-400/50 transition-all space-y-4">
+                    <span class="font-serif text-4xl font-bold text-emerald-400 opacity-60">04</span>
+                    <h3 class="font-serif text-2xl font-bold text-white">Concierge Commissioning</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">Personalized tablet setup, scene calibration, staff training, and 5-year warranty activation.</p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- TRUST BADGES & REVIEWS -->
+    <section class="py-20 bg-black/40 border-y border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 space-y-12">
+            
+            <div class="text-center">
+                <span class="text-xs font-mono uppercase tracking-widest text-gray-400">Certified Excellence & Partners</span>
+                <div class="mt-8 flex flex-wrap items-center justify-center gap-8 sm:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all">
+                    <span class="font-serif text-xl tracking-widest font-bold text-white">CRESTRON</span>
+                    <span class="font-serif text-xl tracking-widest font-bold text-white">LUTRON</span>
+                    <span class="font-serif text-xl tracking-widest font-bold text-white">BENJAMIN MOORE LUXE</span>
+                    <span class="font-serif text-xl tracking-widest font-bold text-white">SAVANT</span>
+                    <span class="font-serif text-xl tracking-widest font-bold text-white">SAN MARCO VENETIAN</span>
+                </div>
+            </div>
+
+            <!-- Client Testimonials Slider/Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6">
+                <div class="glass-panel p-6 rounded-2xl border border-white/10 space-y-4">
+                    <div class="flex text-amber-400 space-x-1">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-xs text-gray-300 italic leading-relaxed">"Luznex integrated our complete 14,000 sq ft home automation seamlessly. Dewutts' Venetian finishes in the foyer left our architectural board speechless."</p>
+                    <div>
+                        <span class="block text-xs font-bold text-white">Harrison V.</span>
+                        <span class="block text-[10px] text-gray-400">Estate Owner, Beverly Hills</span>
+                    </div>
+                </div>
+
+                <div class="glass-panel p-6 rounded-2xl border border-white/10 space-y-4">
+                    <div class="flex text-amber-400 space-x-1">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-xs text-gray-300 italic leading-relaxed">"The cabinet refinishing by Dewutts revived our custom Italian walnut kitchen without requiring replacement. Flawless surface quality."</p>
+                    <div>
+                        <span class="block text-xs font-bold text-white">Elena R.</span>
+                        <span class="block text-[10px] text-gray-400">Interior Designer, Manhattan</span>
+                    </div>
+                </div>
+
+                <div class="glass-panel p-6 rounded-2xl border border-white/10 space-y-4">
+                    <div class="flex text-amber-400 space-x-1">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p class="text-xs text-gray-300 italic leading-relaxed">"Commercial fiber infrastructure and zero-latency access security installed across our 4 boutique hotel locations with 24/7 technical concierge."</p>
+                    <div>
+                        <span class="block text-xs font-bold text-white">Marcus Sterling</span>
+                        <span class="block text-[10px] text-gray-400">VP Operations, Luminary Hotels</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ACCORDION FAQ SECTION WITH SEARCH -->
+    <section id="faq" class="py-24 px-4 sm:px-8 max-w-4xl mx-auto space-y-12">
+        
+        <div class="text-center space-y-4">
+            <span class="text-xs font-mono uppercase tracking-widest text-luznex-glow font-semibold">Inquiries & Clarifications</span>
+            <h2 class="font-serif text-4xl sm:text-5xl font-normal">Frequently Asked Questions</h2>
+            
+            <!-- FAQ Search Bar -->
+            <div class="relative max-w-md mx-auto pt-4">
+                <i data-lucide="search" class="w-4 h-4 absolute left-4 top-7 text-gray-400"></i>
+                <input type="text" id="faq-search" onkeyup="filterFAQ()" placeholder="Search automation, plaster, warranty, booking..." class="w-full bg-black/40 border border-white/10 rounded-full pl-11 pr-4 py-3 text-xs text-white focus:outline-none focus:border-luznex">
+            </div>
+        </div>
+
+        <div class="space-y-4" id="faq-list">
+            
+            <!-- FAQ 1 -->
+            <details class="glass-panel rounded-2xl p-6 border border-white/10 group">
+                <summary class="flex justify-between items-center font-serif text-xl font-medium text-white cursor-pointer list-none">
+                    <span>Can Luznex automation and Dewutts finishes be booked together?</span>
+                    <span class="p-2 rounded-full bg-white/5 group-open:rotate-180 transition-transform">
+                        <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                    </span>
+                </summary>
+                <p class="mt-4 text-xs text-gray-400 leading-relaxed">
+                    Yes. We specialize in coordinated dual-brand executions. Our team embeds low-voltage wiring, motorized shade pockets, and flush architectural lighting fixtures *before* Dewutts master painters apply plaster or fine paint, eliminating re-work.
+                </p>
+            </details>
+
+            <!-- FAQ 2 -->
+            <details class="glass-panel rounded-2xl p-6 border border-white/10 group">
+                <summary class="flex justify-between items-center font-serif text-xl font-medium text-white cursor-pointer list-none">
+                    <span>What is Venetian Plaster and why is it preferred for luxury estates?</span>
+                    <span class="p-2 rounded-full bg-white/5 group-open:rotate-180 transition-transform">
+                        <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                    </span>
+                </summary>
+                <p class="mt-4 text-xs text-gray-400 leading-relaxed">
+                    Dewutts Venetian Plaster uses genuine Italian slaked lime and crushed marble dust. It creates an organic, iridescent surface that regulates ambient humidity, resists mold naturally, and ages gracefully over decades.
+                </p>
+            </details>
+
+            <!-- FAQ 3 -->
+            <details class="glass-panel rounded-2xl p-6 border border-white/10 group">
+                <summary class="flex justify-between items-center font-serif text-xl font-medium text-white cursor-pointer list-none">
+                    <span>How does the 24/7 Luznex Technical Concierge function?</span>
+                    <span class="p-2 rounded-full bg-white/5 group-open:rotate-180 transition-transform">
+                        <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                    </span>
+                </summary>
+                <p class="mt-4 text-xs text-gray-400 leading-relaxed">
+                    Every Luznex estate installation includes proactive remote monitoring. If a network node or IP lighting controller encounters latency, our NOC addresses it instantlyâ€”often before you notice. Direct private phone support is included.
+                </p>
+            </details>
+
+            <!-- FAQ 4 -->
+            <details class="glass-panel rounded-2xl p-6 border border-white/10 group">
+                <summary class="flex justify-between items-center font-serif text-xl font-medium text-white cursor-pointer list-none">
+                    <span>Are your surface finishes eco-friendly and zero-VOC?</span>
+                    <span class="p-2 rounded-full bg-white/5 group-open:rotate-180 transition-transform">
+                        <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                    </span>
+                </summary>
+                <p class="mt-4 text-xs text-gray-400 leading-relaxed">
+                    Exclusively. Dewutts uses non-toxic, odorless, Zero-VOC luxury paints and natural mineral plasters safe for inhabited residences and immediate move-ins.
+                </p>
+            </details>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 bg-black/60 pt-16 pb-12 px-4 sm:px-8 text-xs text-gray-400">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
+            
+            <div class="md:col-span-5 space-y-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 rounded-full bg-luznex flex items-center justify-center text-white">
+                        <i data-lucide="shield" class="w-4 h-4"></i>
+                    </div>
+                    <span class="font-serif text-2xl font-bold text-white tracking-widest">LUZNEX & DEWUTTS</span>
+                </div>
+                <p class="max-w-sm leading-relaxed text-gray-400">
+                    Dual architectural services delivering intelligent space automation and master artisanal surface finishes for premier properties worldwide.
+                </p>
+                <div class="flex space-x-3 text-white">
+                    <a href="#" class="p-2 rounded-full bg-white/5 hover:bg-white/10"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+                    <a href="#" class="p-2 rounded-full bg-white/5 hover:bg-white/10"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+                    <a href="#" class="p-2 rounded-full bg-white/5 hover:bg-white/10"><i data-lucide="twitter" class="w-4 h-4"></i></a>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 space-y-3">
+                <span class="block font-semibold text-white uppercase tracking-wider">Luznex Smart</span>
+                <a href="#services" class="block hover:text-white">Home Automation</a>
+                <a href="#services" class="block hover:text-white">Fiber Networks</a>
+                <a href="#services" class="block hover:text-white">Access Control</a>
+                <a href="#services" class="block hover:text-white">Scene Lighting</a>
+            </div>
+
+            <div class="md:col-span-2 space-y-3">
+                <span class="block font-semibold text-white uppercase tracking-wider">Dewutts Finishes</span>
+                <a href="#services" class="block hover:text-white">Venetian Plaster</a>
+                <a href="#services" class="block hover:text-white">Estate Painting</a>
+                <a href="#services" class="block hover:text-white">Cabinet Refinishing</a>
+                <a href="#services" class="block hover:text-white">Commercial Surfaces</a>
+            </div>
+
+            <div class="md:col-span-3 space-y-3">
+                <span class="block font-semibold text-white uppercase tracking-wider">Private Concierge</span>
+                <p class="text-gray-400">Direct Inquiries: concierge@luznex-dewutts.com</p>
+                <p class="text-gray-400">Global Hotline: +1 (800) 985-5896</p>
+                <button onclick="openModal('booking')" class="mt-2 px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white font-semibold">
+                    Schedule Private Consultation
+                </button>
+            </div>
+
+        </div>
+
+        <div class="max-w-7xl mx-auto pt-6 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] text-gray-500">
+            <p>Â© 2026 LUZNEX Automation & DEWUTTS Architectural Finishes Inc. All Rights Reserved.</p>
+            <div class="flex space-x-6">
+                <a href="#" class="hover:text-gray-300">Privacy Policy</a>
+                <a href="#" class="hover:text-gray-300">Terms of Concierge</a>
+                <a href="#" class="hover:text-gray-300">Security Credentials</a>
             </div>
         </div>
     </footer>
 
+    <!-- PRIVATE CONSULTATION / SPECIFICATION MODAL DRAWER -->
+    <div id="modal-backdrop" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="glass-panel max-w-xl w-full rounded-3xl p-8 border border-white/20 shadow-2xl relative space-y-6 animate-fade-in">
+            
+            <button onclick="closeModal()" class="absolute top-6 right-6 p-2 rounded-full bg-white/10 text-gray-300 hover:text-white">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <div class="space-y-2">
+                <span class="text-xs font-mono uppercase text-luznex-glow font-bold">Concierge Dispatch</span>
+                <h3 class="font-serif text-3xl font-bold text-white">Private Site Consultation</h3>
+                <p class="text-xs text-gray-400">Submit your property details for an on-site architectural evaluation.</p>
+            </div>
+
+            <form onsubmit="handleFormSubmit(event)" class="space-y-4 text-xs">
+                <div>
+                    <label class="block text-gray-300 mb-1">Full Name / Estate Entity</label>
+                    <input type="text" required placeholder="Lord / Lady / Corporate Name" class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-luznex">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-gray-300 mb-1">Email Address</label>
+                        <input type="email" required placeholder="client@estate.com" class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-luznex">
+                    </div>
+                    <div>
+                        <label class="block text-gray-300 mb-1">Direct Phone</label>
+                        <input type="tel" required placeholder="+1 (555) 000-0000" class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-luznex">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-gray-300 mb-1">Primary Scope</label>
+                    <select class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-luznex">
+                        <option>Integrated Luznex & Dewutts Dual Execution</option>
+                        <option>Luznex Smart Automation & Control</option>
+                        <option>Dewutts Venetian Plaster & Cabinet Refinishing</option>
+                        <option>Commercial Hotel / Retail Project</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-gray-300 mb-1">Special Requirements or Architectural Notes</label>
+                    <textarea rows="3" placeholder="Provide property square footage, timeline expectations, or desired finishes..." class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-luznex"></textarea>
+                </div>
+
+                <button type="submit" class="w-full py-4 rounded-xl text-xs font-bold uppercase tracking-widest text-white bg-gradient-to-r from-luznex to-purple-600 shadow-xl hover:opacity-90 transition-all">
+                    Request Priority Dispatch
+                </button>
+            </form>
+
+        </div>
+    </div>
+
+    <!-- PERSISTED COOKIE & PRIVACY CONSENT BANNER -->
+    <div id="cookie-banner" class="fixed bottom-6 right-6 z-40 max-w-md glass-panel p-5 rounded-2xl border border-white/20 shadow-2xl flex flex-col space-y-3">
+        <div class="flex items-start space-x-3">
+            <i data-lucide="cookie" class="w-5 h-5 text-amber-400 shrink-0 mt-0.5"></i>
+            <p class="text-xs text-gray-300 leading-relaxed">
+                We utilize encrypted session state to remember your luxury brand preferences (Luznex / Dewutts) and estimate progress.
+            </p>
+        </div>
+        <div class="flex justify-end space-x-2 pt-2">
+            <button onclick="dismissCookieConsent()" class="px-4 py-2 rounded-lg text-xs font-bold text-white bg-luznex hover:opacity-90">
+                Acknowledge & Continue
+            </button>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT APPLICATION LOGIC -->
     <script>
-        // Brand switching functionality
-        document.querySelectorAll('.brand-switch').forEach(button => {
-            button.addEventListener('click', function() {
-                const brand = this.getAttribute('data-brand');
-                const container = document.querySelector('.brand-container');
-                
-                if (brand === 'luznex') {
-                    container.classList.remove('dewutts-active');
-                    container.classList.add('active-brand');
-                } else {
-                    container.classList.remove('active-brand');
-                    container.classList.add('dewutts-active');
+        // Global Brand State Data
+        let currentBrand = 'luznex';
+        let currentTier = 'prestige';
+        let isDarkMode = true;
+
+        // Brand Configuration Profiles
+        const brandProfiles = {
+            luznex: {
+                title: "LUZNEX",
+                sub: "Automation Concierge",
+                icon: "cpu",
+                badge: "Smart Automation & Network Infrastructure",
+                titlePrefix: "Crafting Intelligent",
+                titleMain: "Smart Spaces & Control",
+                desc: "Elevating architectural luxury with bespoke home automation, fiber network infrastructure, commercial security, and precision architectural lighting systems.",
+                img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+                cardTag: "Active Scene: Lutron Master Control",
+                cardTitle: "Architectural Evening Mood",
+                cardSub: "Motorized shading, 4K video matrix & security grid active.",
+                primaryColor: "#5856D6",
+                accentColor: "#AF52DE",
+                bodyBg: "#090813",
+                servicesBadge: "Smart Automation & Security",
+                servicesTitle: "Luznex Master Technology Suite",
+                servicesSub: "Cutting-edge low voltage engineering, fiber networks, and intuitive touch keypads."
+            },
+            dewutts: {
+                title: "DEWUTTS",
+                sub: "Architectural Finishes",
+                icon: "paint-bucket",
+                badge: "Luxury Interior & Surface Architecture",
+                titlePrefix: "Master artisanal",
+                titleMain: "Plaster & Surface Finishes",
+                desc: "Handcrafted Venetian plaster, estate interior and exterior painting, bespoke walnut cabinet refinishing, and metallic decorative surfaces.",
+                img: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80",
+                cardTag: "Surface Spec: Italian San Marco",
+                cardTitle: "Polished Venetian Plaster",
+                cardSub: "Zero-VOC slaked lime marble plaster with burnished sheen.",
+                primaryColor: "#C59B27",
+                accentColor: "#D4AF37",
+                bodyBg: "#FAF7F2",
+                servicesBadge: "Artisanal Surface Design",
+                servicesTitle: "Dewutts Decorative Finishes",
+                servicesSub: "Hand-applied lime plasters, fine residential painting, and commercial architectural restoration."
+            }
+        };
+
+        // Services Data Set
+        const servicesData = {
+            luznex: [
+                {
+                    title: "Whole-Estate Automation",
+                    tag: "Control4 & Crestron",
+                    icon: "home",
+                    desc: "Unified touchpanel control for audio, scene lighting, HVAC, and shade integration across multi-acre estates.",
+                    specs: ["Crestron Home OS", "Custom Keypads", "Voice Integration"]
+                },
+                {
+                    title: "Fiber & Enterprise WiFi",
+                    tag: "10Gbps Latency-Free",
+                    icon: "wifi",
+                    desc: "Commercial-grade subterranean fiber links, enterprise access points, and zero dead-zone network guarantees.",
+                    specs: ["SFP+ Optical Backbones", "Dual WAN Failover", "Sub-Millisecond Ping"]
+                },
+                {
+                    title: "Access Security & CCTV",
+                    tag: "AI Threat Detection",
+                    icon: "shield-check",
+                    desc: "FLIR thermal cameras, biometric gate access control, and encrypted local video storage vaults.",
+                    specs: ["4K Night Vision", "Biometric Scanners", "Private NOC Alerts"]
+                },
+                {
+                    title: "Architectural Scene Lighting",
+                    tag: "Tunable Spectrum",
+                    icon: "lightbulb",
+                    desc: "Circadian rhythm lighting synced with natural daylight cycles and flush architectural fixtures.",
+                    specs: ["Lutron Ketra Fixtures", "0.1% Micro-Dimming", "Custom Scenes"]
+                },
+                {
+                    title: "Motorized Shading & Acoustic",
+                    tag: "Whisper-Quiet Motors",
+                    icon: "sliders",
+                    desc: "Custom sheer & blackout drapes controlled via wall keypads or automated solar elevation schedules.",
+                    specs: ["Hembar Alignment", "Acoustic Fabric", "Hidden Pockets"]
+                },
+                {
+                    title: "Concierge Technical Support",
+                    tag: "24/7 Dedicated Team",
+                    icon: "headphones",
+                    desc: "Proactive remote health checks, emergency private dispatch, and seasonal system updates.",
+                    specs: ["Immediate SLAs", "Dedicated Lead Tech", "Encrypted Tunnel"]
                 }
-                
-                // Update active brand indicator in header
-                document.querySelectorAll('.brand-switch').forEach(btn => {
-                    if (btn.getAttribute('data-brand') === brand) {
-                        btn.querySelector('span').classList.add('font-bold');
-                    } else {
-                        btn.querySelector('span').classList.remove('font-bold');
-                    }
-                });
-            });
-        });
-        
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-button').addEventListener('click', function() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden'); this.setAttribute('aria-expanded', !menu.classList.contains('hidden'));
-        });
-        
-        // Dark mode toggle
-        document.getElementById('dark-mode-toggle').addEventListener('change', function() {
-            document.body.classList.toggle('dark-mode');
-        });
-        
-        // Animate testimonial cards when they come into view
-        const testimonialCards = document.querySelectorAll('.testimonial-card');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
+            ],
+            dewutts: [
+                {
+                    title: "Venetian & Lime Plaster",
+                    tag: "Authentic Italian",
+                    icon: "sparkles",
+                    desc: "Hand-troweled slaked lime plaster embedded with real marble dust for deep, iridescent depth.",
+                    specs: ["Marmorino & Gloss", "Zero VOC Natural", "Breathable Lime"]
+                },
+                {
+                    title: "Estate Interior Painting",
+                    tag: "Zero-VOC Luxury",
+                    icon: "brush",
+                    desc: "Flawless wall and ceiling preparation, razor-sharp trim lines, and ultra-durable scrubbable sheens.",
+                    specs: ["Level 5 Drywall Prep", "Benjamin Moore Aura", "Dustless Sanding"]
+                },
+                {
+                    title: "Bespoke Cabinet Refinishing",
+                    tag: "Factory Grade Finish",
+                    icon: "box",
+                    desc: "Conversion varnish spraying for kitchens and millwork, achieving showroom factory smoothness.",
+                    specs: ["Catalyzed Polyurethane", "Color Matching", "In-Factory Booth"]
+                },
+                {
+                    title: "Exterior Architectural Surface",
+                    tag: "Weather-Shield Tech",
+                    icon: "sun",
+                    desc: "Elastomeric breathable masonry coatings engineered to withstand coastal salt air and severe heat.",
+                    specs: ["15-Year Guarantee", "UV Reflective", "Stucco Sealing"]
+                },
+                {
+                    title: "Decorative Metallic Glazes",
+                    tag: "Custom Gilding",
+                    icon: "award",
+                    desc: "Gold leaf accents, metallic patina glazes, and textured feature wall art installations.",
+                    specs: ["24K Gold Leaf Options", "Custom Stenciling", "Bespoke Motifs"]
+                },
+                {
+                    title: "Commercial Surface Design",
+                    tag: "Boutique Retail & Hotels",
+                    icon: "building",
+                    desc: "High-traffic commercial surface coatings combining architectural beauty with extreme durability.",
+                    specs: ["Flame Retardant", "Anti-Microbial", "Night Shift Deployment"]
                 }
-            });
-        }, { threshold: 0.1 });
-        
-        testimonialCards.forEach(card => {
-            observer.observe(card);
+            ]
+        };
+
+        // Portfolio Showcase Items Data
+        const portfolioItems = [
+            {
+                title: "Bel-Air Modern Compound",
+                category: "residential",
+                brand: "Luznex",
+                img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80",
+                desc: "Full Control4 ecosystem, Lutron Ketra lighting, and security perimeter CCTV."
+            },
+            {
+                title: "Tribeca Penthouse Plasterwork",
+                category: "finishes",
+                brand: "Dewutts",
+                img: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80",
+                desc: "Custom burnished Venetian plaster in Venetian Sand throughout 6,000 sq ft."
+            },
+            {
+                title: "The Luminary Hotel Lobby",
+                category: "commercial",
+                brand: "Dual-Brand",
+                img: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80",
+                desc: "Acoustic wall paneling, fiber distribution network, and decorative gilding."
+            },
+            {
+                title: "Malibu Oceanfront Villa",
+                category: "residential",
+                brand: "Dewutts",
+                img: "https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=800&q=80",
+                desc: "Exterior weather-shield elastomeric coatings and custom millwork refinishing."
+            },
+            {
+                title: "Boutique Retail Flagship",
+                category: "commercial",
+                brand: "Luznex",
+                img: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80",
+                desc: "Biometric access systems, 10Gbps retail guest networks, and scene dimming."
+            },
+            {
+                title: "Aspen Ski Chalet Refinishing",
+                category: "finishes",
+                brand: "Dewutts",
+                img: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80",
+                desc: "Custom dark walnut cabinetry refinishing and metallic fireplace accent plasters."
+            }
+        ];
+
+        // INITIALIZATION
+        window.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            renderServices();
+            renderPortfolio(portfolioItems);
+            initBeforeAfterSlider();
+            checkCookieConsent();
         });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 100,
-                        behavior: 'smooth'
-                    });
+
+        // BRAND SWITCHER ENGINE
+        function switchBrand(brandKey) {
+            if (currentBrand === brandKey) return;
+
+            const curtain = document.getElementById('brand-curtain');
+            curtain.classList.add('brand-transition-active');
+
+            setTimeout(() => {
+                currentBrand = brandKey;
+                const profile = brandProfiles[brandKey];
+                const body = document.getElementById('app-body');
+
+                if (brandKey === 'dewutts') {
+                    body.classList.add('brand-dewutts');
+                    if (!isDarkMode) body.classList.remove('dark');
                     
-                    // Close mobile menu if open
-                    const mobileMenu = document.getElementById('mobile-menu');
-                    if (!mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
-                    }
+                    // Switch Header elements
+                    document.getElementById('nav-brand-title').innerText = "DEWUTTS";
+                    document.getElementById('nav-brand-title').className = "font-serif text-2xl font-bold tracking-wider uppercase text-white bg-gradient-to-r from-dewutts-gold via-amber-200 to-amber-600";
+                    document.getElementById('nav-brand-sub').innerText = "Architectural Finishes";
+                    document.getElementById('nav-brand-icon').setAttribute('data-lucide', 'paint-bucket');
+                    document.getElementById('brand-icon-box').className = "w-10 h-10 rounded-full flex items-center justify-center text-gray-900 bg-gradient-to-tr from-dewutts-gold to-amber-200 shadow-lg shadow-dewutts/30 transition-all duration-500";
+                    
+                    document.getElementById('btn-switch-dewutts').className = "px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider transition-all duration-300 flex items-center space-x-2 bg-dewutts text-gray-900 shadow-md";
+                    document.getElementById('btn-switch-luznex').className = "px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider transition-all duration-300 flex items-center space-x-2 text-gray-400 hover:text-white";
+                } else {
+                    body.classList.remove('brand-dewutts');
+                    
+                    // Switch Header elements
+                    document.getElementById('nav-brand-title').innerText = "LUZNEX";
+                    document.getElementById('nav-brand-title').className = "font-serif text-2xl font-bold tracking-wider uppercase text-white text-gray-900";
+                    document.getElementById('nav-brand-sub').innerText = "Automation Concierge";
+                    document.getElementById('nav-brand-icon').setAttribute('data-lucide', 'cpu');
+                    document.getElementById('brand-icon-box').className = "w-10 h-10 rounded-full flex items-center justify-center text-white bg-gradient-to-tr from-luznex to-luznex-accent shadow-lg shadow-luznex/30 transition-all duration-500";
+                    
+                    document.getElementById('btn-switch-luznex').className = "px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider transition-all duration-300 flex items-center space-x-2 bg-luznex text-white shadow-md";
+                    document.getElementById('btn-switch-dewutts').className = "px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider transition-all duration-300 flex items-center space-x-2 text-gray-400 hover:text-white";
+                }
+
+                // Dynamic Hero Updates
+                document.getElementById('hero-badge').innerText = profile.badge;
+                document.getElementById('hero-title-prefix').innerText = profile.titlePrefix;
+                document.getElementById('hero-title-main').innerText = profile.titleMain;
+                document.getElementById('hero-desc').innerText = profile.desc;
+                document.getElementById('hero-img').src = profile.img;
+                document.getElementById('hero-card-tag').innerText = profile.cardTag;
+                document.getElementById('hero-card-title').innerText = profile.cardTitle;
+                document.getElementById('hero-card-subtitle').innerText = profile.cardSub;
+
+                // Services Updates
+                document.getElementById('services-badge').innerText = profile.servicesBadge;
+                document.getElementById('services-title').innerText = profile.servicesTitle;
+                document.getElementById('services-sub').innerText = profile.servicesSub;
+
+                renderServices();
+                lucide.createIcons();
+
+                setTimeout(() => {
+                    curtain.classList.remove('brand-transition-active');
+                }, 300);
+
+            }, 400);
+        }
+
+        // RENDER SERVICE CARDS
+        function renderServices() {
+            const container = document.getElementById('services-grid');
+            const data = servicesData[currentBrand];
+            
+            container.innerHTML = data.map(item => `
+                <div class="glass-panel rounded-3xl p-8 border border-white/10 hover:border-luznex/40 transition-all duration-300 tilt-card flex flex-col justify-between space-y-6">
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div class="p-3 rounded-2xl bg-white/5 border border-white/10 text-white">
+                                <i data-lucide="${item.icon}" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] font-mono uppercase tracking-widest px-3 py-1 rounded-full glass-panel text-gray-300 border border-white/10">${item.tag}</span>
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold text-white">${item.title}</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed">${item.desc}</p>
+                    </div>
+
+                    <div class="space-y-3 border-t border-white/10 pt-4">
+                        <span class="text-[10px] font-mono uppercase text-gray-400 block">Specification Specs:</span>
+                        <div class="flex flex-wrap gap-1.5">
+                            ${item.specs.map(spec => `<span class="text-[10px] px-2.5 py-1 rounded-md bg-white/5 border border-white/5 text-gray-300">${spec}</span>`).join('')}
+                        </div>
+                    </div>
+
+                    <button onclick="openModal('calculator')" class="w-full py-3 rounded-xl text-xs font-semibold uppercase tracking-wider text-white bg-white/5 hover:bg-white/10 border border-white/10 transition-all flex items-center justify-center space-x-2">
+                        <span>Get Itemized Quote</span>
+                        <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+                    </button>
+                </div>
+            `).join('');
+
+            lucide.createIcons();
+        }
+
+        // RENDER PORTFOLIO GALLERY
+        function renderPortfolio(items) {
+            const container = document.getElementById('portfolio-grid');
+            container.innerHTML = items.map(item => `
+                <div class="glass-panel rounded-2xl overflow-hidden border border-white/10 group">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:opacity-90">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80"></div>
+                        <span class="absolute top-3 left-3 text-[10px] font-mono uppercase px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-amber-300">${item.brand}</span>
+                    </div>
+                    <div class="p-5 space-y-2">
+                        <h4 class="font-serif text-xl font-bold text-white">${item.title}</h4>
+                        <p class="text-xs text-gray-400">${item.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterPortfolio(cat) {
+            if (cat === 'all') {
+                renderPortfolio(portfolioItems);
+            } else {
+                const filtered = portfolioItems.filter(i => i.category === cat);
+                renderPortfolio(filtered);
+            }
+        }
+
+        // BEFORE / AFTER SLIDER CONTROLLER
+        function initBeforeAfterSlider() {
+            const container = document.getElementById('ba-container');
+            const clipped = document.getElementById('ba-clipped');
+            const handle = document.getElementById('ba-handle');
+            const beforeImg = document.getElementById('ba-before-img');
+
+            if (!container) return;
+
+            let isDragging = false;
+
+            function updateSlider(x) {
+                const rect = container.getBoundingClientRect();
+                let position = x - rect.left;
+                if (position < 0) position = 0;
+                if (position > rect.width) position = rect.width;
+
+                const percentage = (position / rect.width) * 100;
+                clipped.style.width = percentage + '%';
+                handle.style.left = percentage + '%';
+                beforeImg.style.width = rect.width + 'px';
+            }
+
+            container.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                updateSlider(e.clientX);
+            });
+
+            window.addEventListener('mouseup', () => isDragging = false);
+
+            window.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                updateSlider(e.clientX);
+            });
+
+            // Touch events for Mobile Swiping
+            container.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                updateSlider(e.touches[0].clientX);
+            });
+
+            window.addEventListener('touchend', () => isDragging = false);
+
+            window.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                updateSlider(e.touches[0].clientX);
+            });
+        }
+
+        // DYNAMIC CALCULATOR ENGINE
+        let calcService = 'luznex';
+        function setCalcService(realm) {
+            calcService = realm;
+            document.getElementById('calc-realm-luznex').className = realm === 'luznex' ? 
+                'p-3 rounded-xl border border-luznex bg-luznex/20 text-white font-semibold text-xs flex items-center justify-center space-x-2' : 
+                'p-3 rounded-xl border border-white/10 glass-panel text-gray-400 font-semibold text-xs flex items-center justify-center space-x-2';
+
+            document.getElementById('calc-realm-dewutts').className = realm === 'dewutts' ? 
+                'p-3 rounded-xl border border-dewutts bg-dewutts/20 text-gray-900 dark:text-white font-semibold text-xs flex items-center justify-center space-x-2' : 
+                'p-3 rounded-xl border border-white/10 glass-panel text-gray-400 font-semibold text-xs flex items-center justify-center space-x-2';
+
+            calculateEstimate();
+        }
+
+        function setCalcTier(tier) {
+            currentTier = tier;
+            ['signature', 'prestige', 'bespoke'].forEach(t => {
+                const btn = document.getElementById(`tier-${t}`);
+                if (t === tier) {
+                    btn.className = 'p-3 rounded-xl border border-luznex bg-luznex/30 text-xs font-semibold text-center text-white';
+                } else {
+                    btn.className = 'p-3 rounded-xl border border-white/20 text-xs font-semibold text-center text-gray-400';
                 }
             });
-        });
+            calculateEstimate();
+        }
+
+        function calculateEstimate() {
+            const sqft = parseInt(document.getElementById('calc-sqft-slider').value);
+            const propMultiplier = parseFloat(document.getElementById('calc-property-type').value);
+            document.getElementById('calc-sqft-val').innerText = sqft.toLocaleString() + ' Sq. Ft.';
+
+            let baseRate = calcService === 'luznex' ? 6.5 : 4.8;
+            let tierMultiplier = currentTier === 'signature' ? 1.0 : (currentTier === 'prestige' ? 1.35 : 1.8);
+
+            let totalLow = Math.round(sqft * baseRate * propMultiplier * tierMultiplier);
+            let totalHigh = Math.round(totalLow * 1.25);
+
+            document.getElementById('calc-price-output').innerText = `$${totalLow.toLocaleString()} - $${totalHigh.toLocaleString()}`;
+            
+            let leadDays = Math.max(5, Math.round(sqft / 400));
+            document.getElementById('calc-lead-time').innerText = `${leadDays} - ${leadDays + 5} Business Days`;
+        }
+
+        function submitEstimateToWhatsApp() {
+            const sqft = document.getElementById('calc-sqft-slider').value;
+            const price = document.getElementById('calc-price-output').innerText;
+            const text = `Hello Concierge, I configured an estimate on your portal for ${sqft} sq ft (${calcService.toUpperCase()} Realm, ${currentTier.toUpperCase()} Tier). Estimate: ${price}. I would like to lock in this consultation.`;
+            window.open(`https://wa.me/18009855896?text=${encodeURIComponent(text)}`, '_blank');
+        }
+
+        // FAQ SEARCH FILTER
+        function filterFAQ() {
+            const query = document.getElementById('faq-search').value.toLowerCase();
+            const items = document.querySelectorAll('#faq-list details');
+            items.forEach(item => {
+                const text = item.innerText.toLowerCase();
+                if (text.includes(query)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // UI MODALS & DRAWER LOGIC
+        function openModal(type) {
+            document.getElementById('modal-backdrop').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('modal-backdrop').classList.add('hidden');
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            alert('Your concierge request has been securely transmitted. A private project advisor will contact you within 2 hours.');
+            closeModal();
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function toggleDarkMode() {
+            isDarkMode = !isDarkMode;
+            document.documentElement.classList.toggle('dark');
+            const icon = document.getElementById('theme-icon');
+            if (isDarkMode) {
+                icon.setAttribute('data-lucide', 'moon');
+            } else {
+                icon.setAttribute('data-lucide', 'sun');
+            }
+            lucide.createIcons();
+        }
+
+        // PERSISTENT COOKIE CONSENT
+        function dismissCookieConsent() {
+            localStorage.setItem('cookieConsentDismissed', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+        }
+
+        function checkCookieConsent() {
+            if (localStorage.getItem('cookieConsentDismissed') === 'true') {
+                document.getElementById('cookie-banner').style.display = 'none';
+            }
+        }
     </script>
-<script>document.getElementById("dismiss-cookie").addEventListener("click",function(){document.getElementById("cookie-notice").remove();localStorage.setItem("cookie-notice-dismissed","true")});if(localStorage.getItem("cookie-notice-dismissed"))document.getElementById("cookie-notice").remove();</script></body>
+</body>
 </html>
-
-
-
-
-
 
