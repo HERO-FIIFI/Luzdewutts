@@ -1,11 +1,7 @@
-﻿# Luzdewutts
+﻿# Luzdewutts production baseline
 
-Static marketing site for the Luznex smart-automation and Dewutts painting/design brands.
+The site is deployable as a static site using Netlify, Cloudflare Pages, or any HTTPS static host. `netlify.toml` adds security headers and publishes `src/`.
 
-## Current status
+Before launch, replace `example.com` in `src/robots.txt` and `src/sitemap.xml`, replace placeholder business content/contact details, and connect `src/booking.html` and the homepage forms to an approved form/CRM provider. The current mailto fallback requires the visitor to have a configured mail application and should not be treated as reliable lead storage.
 
-This repository contains the visual prototype in `src/index.html`. It is not yet production-ready: the booking page and contact forms need a real backend or form provider, placeholder content must be replaced, and deployment/security controls still need to be configured.
-
-## Local preview
-
-Serve the `src` directory with any static web server, for example VS Code Live Server, then open `index.html`.
+Preview locally with any static server from the repository root, serving `src/`.
